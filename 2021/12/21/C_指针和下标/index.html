@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="简介本文主要介绍一些markdown编辑格式下的一些技巧。 一. emoji表情MarkDown支持插入emoji表情，具体方法可以分为两种  方法一：使用Unicode 格式：&amp;#x + unicode + ;    Unicode Markdown emoji    U+1F44D &amp;#x1F44D; &amp;#x1F44D;   U+1F30D &amp;#x1F30D; &amp;#x1">
+  <meta name="description" content="1. 简介C语言中，数组元素访问可以使用指针或者下标两种方法。二者效率上在某些情况下有所不同。 在阅读《C和指针》第八章第145页时，有所感悟。 前置知识：  数组名和指针的区别  数组具有确定数量的元素，而指针只是一个标量值。  数组名是一个指针常量，而非指针变量。    数组名和指针不能替换的场景：  作为sizieof操作符时，数组返回元素个数，指针返回指定环境下的指针大小。（32位为4，6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown技巧">
-<meta property="og:url" content="http://example.com/2021/09/23/Markdown%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:title" content="C_指针和下标">
+<meta property="og:url" content="http://example.com/2021/12/21/C_%E6%8C%87%E9%92%88%E5%92%8C%E4%B8%8B%E6%A0%87/index.html">
 <meta property="og:site_name" content="1943丶 Blog">
-<meta property="og:description" content="简介本文主要介绍一些markdown编辑格式下的一些技巧。 一. emoji表情MarkDown支持插入emoji表情，具体方法可以分为两种  方法一：使用Unicode 格式：&amp;#x + unicode + ;    Unicode Markdown emoji    U+1F44D &amp;#x1F44D; &amp;#x1F44D;   U+1F30D &amp;#x1F30D; &amp;#x1">
+<meta property="og:description" content="1. 简介C语言中，数组元素访问可以使用指针或者下标两种方法。二者效率上在某些情况下有所不同。 在阅读《C和指针》第八章第145页时，有所感悟。 前置知识：  数组名和指针的区别  数组具有确定数量的元素，而指针只是一个标量值。  数组名是一个指针常量，而非指针变量。    数组名和指针不能替换的场景：  作为sizieof操作符时，数组返回元素个数，指针返回指定环境下的指针大小。（32位为4，6">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-22T19:33:22.000Z">
-<meta property="article:modified_time" content="2021-09-22T19:34:55.319Z">
+<meta property="article:published_time" content="2021-12-20T17:44:23.000Z">
+<meta property="article:modified_time" content="2021-12-20T18:01:10.026Z">
 <meta property="article:author" content="Miaocf">
-<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="C">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/09/23/Markdown%E6%8A%80%E5%B7%A7/">
+<link rel="canonical" href="http://example.com/2021/12/21/C_%E6%8C%87%E9%92%88%E5%92%8C%E4%B8%8B%E6%A0%87/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Markdown技巧 | 1943丶 Blog</title>
+  <title>C_指针和下标 | 1943丶 Blog</title>
   
 
 
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/23/Markdown%E6%8A%80%E5%B7%A7/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/21/C_%E6%8C%87%E9%92%88%E5%92%8C%E4%B8%8B%E6%A0%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Markdown技巧
+          C_指针和下标
         </h1>
 
         <div class="post-meta">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-23 03:33:22 / 修改时间：03:34:55" itemprop="dateCreated datePublished" datetime="2021-09-23T03:33:22+08:00">2021-09-23</time>
+              <time title="创建时间：2021-12-21 01:44:23 / 修改时间：02:01:10" itemprop="dateCreated datePublished" datetime="2021-12-21T01:44:23+08:00">2021-12-21</time>
             </span>
 
           
@@ -204,120 +204,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>本文主要介绍一些markdown编辑格式下的一些技巧。</p>
-<h2 id="一-emoji表情"><a href="#一-emoji表情" class="headerlink" title="一. emoji表情"></a>一. emoji表情</h2><p>MarkDown支持插入emoji表情，具体方法可以分为两种</p>
+        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>C语言中，数组元素访问可以使用指针或者下标两种方法。二者效率上在某些情况下有所不同。</p>
+<p>在阅读《C和指针》第八章第145页时，有所感悟。</p>
+<p>前置知识：</p>
 <ul>
-<li><p>方法一：使用Unicode</p>
-<p>格式：<code>&amp;#x</code> + <code>unicode</code> + <code>;</code></p>
-<table>
-<thead>
-<tr>
-<th>Unicode</th>
-<th>Markdown</th>
-<th>emoji</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>U+1F44D</td>
-<td><code>&amp;#x1F44D;</code></td>
-<td>&#x1F44D;</td>
-</tr>
-<tr>
-<td>U+1F30D</td>
-<td><code>&amp;#x1F30D;</code></td>
-<td>&#x1F30D;</td>
-</tr>
-<tr>
-<td>U+1F603</td>
-<td><code>&amp;#x1F603;</code></td>
-<td>&#x1F603;</td>
-</tr>
-</tbody></table>
-<p>详细的emoji集合和编码可以参考：[Full Emoji List, v14.0][<a target="_blank" rel="noopener" href="http://www.unicode.org/emoji/charts/full-emoji-list.html]">http://www.unicode.org/emoji/charts/full-emoji-list.html]</a></p>
-<p>该方法的缺点是需要记住对应的Unicode编码，不实用。</p>
+<li><p>数组名和指针的区别</p>
+<ol>
+<li><p>数组具有确定数量的元素，而指针只是一个标量值。</p>
 </li>
-<li><p>方法二： 使用英文单词</p>
-<p>格式：<code>:</code>+<code>对应英文单词</code>+<code>:</code></p>
-<table>
-<thead>
-<tr>
-<th>emoj</th>
-<th align="left">Markdown格式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>:smile:</td>
-<td align="left"><code>:smile:</code></td>
-</tr>
-<tr>
-<td>:bulb:</td>
-<td align="left"><code>:bulb:</code></td>
-</tr>
-<tr>
-<td>:mag:</td>
-<td align="left"><code>:mag:</code></td>
-</tr>
-<tr>
-<td>:star:</td>
-<td align="left"><code>:star:</code></td>
-</tr>
-</tbody></table>
-<p>该方法通过两个冒号和具体的英文单词拼接而成，使用方便。比较实用。</p>
+<li><p>数组名是一个指针常量，而非指针变量。</p>
 </li>
-</ul>
+</ol>
+</li>
+<li><p>数组名和指针不能替换的场景：</p>
+<ol>
+<li>作为<code>sizieof</code>操作符时，数组返回元素个数，指针返回指定环境下的指针大小。（32位为4，64位为8）</li>
+<li>作为操作符 <code>&amp;</code> 的操作数时，取一个数组名的地址返回一个指向数组的指针。而不是一个指向某个指针常量的指针。</li>
+</ol>
 <blockquote>
-<p>以下是一些常用的emoji图标：</p>
-<p>❤️ ✨⭐ ❗❓❕❔ ✊✌️ ✋✋ ☝️</p>
-<p>☀️ ☔ ☁️ ❄️ ⛄ ⚡ ⛅</p>
-<p>☎️ ☎️ ⌛ ⏳ ⏰ ⌚ ➿ ✉️ ✉️ ✂️ ✒️ ✏️ ⚽ ⚾️ ⛳ ♠️ ♥️ ♣️ ♦️ ☕</p>
-<p>⛪ ⛺ ⛲ ⛵ ⛵ ⚓ ✈️ ⛽ ⚠️ ♨️</p>
-<p>1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 0️⃣ #️⃣ ◀️ ⬇️ ▶️ ⬅️ ↙️ ↘️ ➡️ ⬆️ ↖️ ↗️ ⏬ ⏫ ⤵️ ⤴️ ↩️ ↪️ ↔️ ↕️ ⏪ ⏩ ℹ️ ️ ️ ️ ♿ ㊙️ ㊗️ Ⓜ️ ⛔ ✳️ ❇️ ✴️ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ⛎ ❎ ️ ️ ️ ♻️ ©️ ®️ ™️ ❌ ❗ ‼️ ⁉️ ⭕ ✖️ ➕ ➖ ➗ ✔️ ☑️ ➰ 〰️ 〽️ ▪️ ▫️ ◾ ◽ ◼️ ◻️ ⬛ ⬜ ✅ ⚫ ⚪</p>
-</blockquote>
-<h2 id="二-实体键盘按键"><a href="#二-实体键盘按键" class="headerlink" title="二. 实体键盘按键"></a>二. 实体键盘按键</h2><p>格式： 使用<code>&lt;kbd&gt;</code>+<code>按键名</code>+<code>&lt;/kbd&gt;</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;kbd&gt;Ctrl&lt;/kbd&gt;</span><br><span class="line">&lt;kbd&gt;Tab&lt;/kbd&gt;</span><br><span class="line">&lt;kbd&gt;Anything&lt;/kbd&gt;</span><br></pre></td></tr></table></figure>
+<p>考虑下例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span>* c;</span><br><span class="line"></span><br><span class="line">c = &amp; a[<span class="number">0</span>]; <span class="comment">// 合法， 等价于c = a;</span></span><br><span class="line">b = a;      <span class="comment">// 非法，数组不能这样复制</span></span><br><span class="line">a = c;      <span class="comment">// 非法，a 为指针常量，不能被修改</span></span><br></pre></td></tr></table></figure></blockquote>
+</li>
+<li><p>恒等式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">array</span>[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span>* ap = <span class="built_in">array</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 则有恒等式：</span></span><br><span class="line"><span class="built_in">array</span>[<span class="number">2</span>] = * (<span class="built_in">array</span> +　<span class="number">2</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>特别的有 <code>array[2] = * (array + 2) = 2[array]</code>,虽然根据恒等式可以得出二者相同，但是从可读性出发，尽量使用前者。</p>
+<p>对数组元素的访问可以使用指针表达式和下标表达式两种方法，在假设二者都是正确的前提下，<strong>下标绝不会比指针更有效率，但是指针有时候比下标表达式更有效率。</strong></p>
+<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2. 例子"></a>2. 例子</h2><p>我们来研究两个循环，他们做了同一件事情。</p>
+<p>例1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">array</span>[<span class="number">10</span>], a;</span><br><span class="line"><span class="keyword">for</span> (a = <span class="number">0</span>; a &lt; <span class="number">10</span>; a++) &#123;</span><br><span class="line">	<span class="built_in">array</span>[a] = <span class="number">0</span>; <span class="comment">// 这里a需要乘上整形的长度4.即每一次都有一次乘法。	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>代码效果：<kbd>Ctrl</kbd>    <kbd>Tab</kbd>    <kbd>Anything</kbd>    </p>
-<h2 id="三-特殊格式"><a href="#三-特殊格式" class="headerlink" title="三. 特殊格式"></a>三. 特殊格式</h2><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>格式</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>删除线</td>
-<td><code>~~anthing~~</code></td>
-<td><del>anthing</del></td>
-</tr>
-<tr>
-<td>加粗</td>
-<td><code>**hello world**</code> / <kbd>Ctrl</kbd>+<kbd>T</kbd></td>
-<td><strong>hello world</strong></td>
-</tr>
-<tr>
-<td>斜体</td>
-<td><code>*hello world*</code>     / <kbd>Ctrl</kbd>+<kbd>B</kbd></td>
-<td><em>hello world</em></td>
-</tr>
-<tr>
-<td>斜体加粗</td>
-<td><code>***hello world***</code></td>
-<td><em><strong>hello world</strong></em></td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>引用文本：<kbd>></kbd> + <kbd>space</kbd></p>
-<p>效果：</p>
+<p>在上述例子中，我们使用了下标表达式，程序运行时，编译器在程序中插入指令，取得a的值，并把它与整形的长度（也就是4）相乘。而这个乘法需要耗费一定的时间和空间。</p>
+<p>作为对比，看例2：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arrayp[<span class="number">10</span>], *ap;</span><br><span class="line"><span class="keyword">for</span> (ap = <span class="built_in">array</span>; ap &lt; <span class="built_in">array</span> + <span class="number">10</span>; ap++) &#123;</span><br><span class="line">	*ap = <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里虽然不存在下标，但是仍然存在乘法运算，这里的乘法出现在for循环中的++中。1与整型的长度4相乘，然后再加加。但是与上面下标表示法不同的是，这里相乘的两个数是两个相同的数，即1和4。最后，这个乘法只在编译的时候执行一次，现在程序包含了一条指令，把4和指针相加，程序在运行时并不执行乘法运算。</p>
 <blockquote>
-<p>Hello world!</p>
+<p>总结：<strong>下标绝不会比指针更有效率，但是指针有时候比下标表达式更有效率。</strong></p>
+<p>但是同样重要的是，我们编写程序的时候不仅需要考虑程序运行的效率，同时也需要考虑可读性。<strong>不要为了效率上的细微差别而牺牲可读性。</strong></p>
 </blockquote>
-</li>
-<li><p>分割线： <kbd>***</kbd>+<kbd>space</kbd>  / <kbd>---</kbd> + <kbd>space</kbd></p>
-<p>效果：</p>
-<hr>
-</li>
-</ul>
 
     </div>
 
@@ -327,7 +252,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+              <a href="/tags/C/" rel="tag"># C</a>
           </div>
 
         
@@ -336,13 +261,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="prev" title="正则表达式">
-      <i class="fa fa-chevron-left"></i> 正则表达式
+    <a href="/2021/09/23/Markdown%E6%8A%80%E5%B7%A7/" rel="prev" title="Markdown技巧">
+      <i class="fa fa-chevron-left"></i> Markdown技巧
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/21/C_%E6%8C%87%E9%92%88%E5%92%8C%E4%B8%8B%E6%A0%87/" rel="next" title="C_指针和下标">
-      C_指针和下标 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -401,7 +323,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-emoji%E8%A1%A8%E6%83%85"><span class="nav-number"></span> <span class="nav-text">一. emoji表情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E4%BD%93%E9%94%AE%E7%9B%98%E6%8C%89%E9%94%AE"><span class="nav-number"></span> <span class="nav-text">二. 实体键盘按键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E7%89%B9%E6%AE%8A%E6%A0%BC%E5%BC%8F"><span class="nav-number"></span> <span class="nav-text">三. 特殊格式</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">1. 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BE%8B%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">2. 例子</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
