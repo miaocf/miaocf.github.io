@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="nRF52840开发（一）在安装好运行环境后，开始了解新建和配置裸机工程。 SDK学习Nordic工程SDK17的工程目录如下：  Components包含了开发是需要用到的各种库。其目录如下：  Examples该目录下存放着是SDK中所有的例子源码没包括BLE从机、BLE主机、BLE主从一体、芯片外设等例子程序。每个例子下都包含了刴个开发环境下的许多个工程，使用时需要注意区别。 这里我们以“蓝">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nRF52840开发（一）">
+<meta property="og:url" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="1943丶 Blog">
+<meta property="og:description" content="nRF52840开发（一）在安装好运行环境后，开始了解新建和配置裸机工程。 SDK学习Nordic工程SDK17的工程目录如下：  Components包含了开发是需要用到的各种库。其目录如下：  Examples该目录下存放着是SDK中所有的例子源码没包括BLE从机、BLE主机、BLE主从一体、芯片外设等例子程序。每个例子下都包含了刴个开发环境下的许多个工程，使用时需要注意区别。 这里我们以“蓝">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011143496.png">
+<meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011323701.png">
+<meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011853164.png">
+<meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223013108066.png">
+<meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223020622200.png">
+<meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223025746216.png">
+<meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223024542799.png">
+<meta property="article:published_time" content="2022-02-22T15:56:19.000Z">
+<meta property="article:modified_time" content="2022-02-23T16:22:20.794Z">
+<meta property="article:author" content="Miaocf">
+<meta property="article:tag" content="BLE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011143496.png">
+
+<link rel="canonical" href="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>nRF52840开发（一） | 1943丶 Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">1943丶 Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Miaocf">
+      <meta itemprop="description" content="Keep coding!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1943丶 Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          nRF52840开发（一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-22 23:56:19" itemprop="dateCreated datePublished" datetime="2022-02-22T23:56:19+08:00">2022-02-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 00:22:20" itemprop="dateModified" datetime="2022-02-24T00:22:20+08:00">2022-02-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="nRF52840开发（一）"><a href="#nRF52840开发（一）" class="headerlink" title="nRF52840开发（一）"></a>nRF52840开发（一）</h2><p>在安装好运行环境后，开始了解新建和配置裸机工程。</p>
+<h2 id="SDK学习"><a href="#SDK学习" class="headerlink" title="SDK学习"></a>SDK学习</h2><p>Nordic工程SDK17的工程目录如下：</p>
+<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011143496.png" alt="image-20220223011143496"></p>
+<h5 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h5><p>包含了开发是需要用到的各种库。其目录如下：</p>
+<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011323701.png" alt="image-20220223011323701"></p>
+<h5 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h5><p>该目录下存放着是SDK中所有的例子源码没包括BLE从机、BLE主机、BLE主从一体、芯片外设等例子程序。每个例子下都包含了刴个开发环境下的许多个工程，使用时需要注意区别。</p>
+<p>这里我们以“蓝牙心率计”为例，打开<code>examples\ble_peripheral\ble_app_hrs</code>目录，该路径下有许多开发板对应的型号，其中我们使用的52840即对应着 “pca10056”文件夹。此外nRf52840对应的BLE协议是 S140。</p>
+<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011853164.png" alt="image-20220223011853164"></p>
+<h5 id="Integration-和-Modules"><a href="#Integration-和-Modules" class="headerlink" title="Integration 和 Modules"></a>Integration 和 Modules</h5><p>Integration 中存放的是旧版本的芯片外设驱动程序，对应的 SDK 版本为15.0之前的版本； modules 中存放的是芯片新版本的外设驱动程序。在SDK15.0版本之后， Nordic 开始重新编写外设驱动程序，并命名为<code>nrfx</code>, 放置modules 目录下。</p>
+<h2 id="新建和配置工程"><a href="#新建和配置工程" class="headerlink" title="新建和配置工程"></a>新建和配置工程</h2><p>nRf52840可以用 MDK5 和 IAR 集成开发环境来开发程序。</p>
+<h5 id="MDK5和pack的关系"><a href="#MDK5和pack的关系" class="headerlink" title="MDK5和pack的关系"></a>MDK5和pack的关系</h5><p>MDK5 与之前版本的区别： 早期版本期间（Software Packs）与编译器（MDK core) 分离，所以需要自己来配置期间，方便灵活管理。</p>
+<p>参考工程目录：</p>
+<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223013108066.png" alt="image-20220223013108066"></p>
+<p>按需添加各个驱动文件和头文件后，复制<code>sdk_config.h</code>文件至<code>...\project\config</code> 目录， 文件原可以从官方的实例文件中找类似的项目，实际使用的时候进行适当的修改配置。 目录为<code>...\pca10056\s140\config</code></p>
+<h5 id="Target选项卡配置"><a href="#Target选项卡配置" class="headerlink" title="Target选项卡配置"></a>Target选项卡配置</h5><p>52840 芯片的片内 FLASH 是 1MB， 对应的16进制是  0x100000, 片内 RAM 是 256 KB， 对应的16进制是： 0x40000。 如下图所示：</p>
+<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223020622200.png" alt="image-20220223020622200"></p>
+<h5 id="C-x2F-C-选项卡"><a href="#C-x2F-C-选项卡" class="headerlink" title="C&#x2F;C++选项卡"></a>C&#x2F;C++选项卡</h5><p><code>One ELF Secion per Function</code>选项：</p>
+<p>该选项的机制是将每一个函数作为一个优化单元，而非整个文件作为参与优化的单元。实际作用体现在大工程中，对于库函数中冗余函数的剔除。</p>
+<p><code>C99 Mode</code>选项：</p>
+<p>该选项允许变量的声明放在可执行语句的后面，使用组件库的时候需要勾选这个选项。</p>
+<p><code>Misc Controls</code> 栏：</p>
+<p>输入<code>--reduce_paths</code>, 可以设置MDK 自动消除冗余路径。</p>
+<h5 id="Linker选项卡："><a href="#Linker选项卡：" class="headerlink" title="Linker选项卡："></a>Linker选项卡：</h5><p>该选项卡中主要配置的是忽略告警设置。 BLE 工程编译的时候会产生 6330 的警告，因此在<code>Misc control</code>栏中加入 <code>--diag_suppress 6330</code>， 忽略告警。</p>
+<h3 id><a href="#" class="headerlink" title></a></h3><h2 id="编译工程"><a href="#编译工程" class="headerlink" title="编译工程"></a>编译工程</h2><ul>
+<li><code>Translate</code>: 编译当前打开的活动文档</li>
+<li><code>Build</code>: 增量编译，编译工程中上次修改的文件及其他依赖于这些修改过文件的模块，同时重新链接生成可执行文件。如果工程之前没编译链接过，它会直接调用<code>Rebuild ALL</code>.</li>
+<li><code>Rebuild All</code>: 全部重新编译。</li>
+</ul>
+<h5 id="Map-查看"><a href="#Map-查看" class="headerlink" title="Map 查看"></a>Map 查看</h5><p>双击工程名，即可快速查看工程Map文件</p>
+<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223025746216.png" alt="image-20220223025746216"></p>
+<h2 id="烧写报错"><a href="#烧写报错" class="headerlink" title="烧写报错"></a>烧写报错</h2><p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223024542799.png" alt="image-20220223024542799"></p>
+<p>原因： </p>
+<ul>
+<li>芯片中已经下载了协议栈，协议栈对占用的Flash空间进行了保护，并且协议栈的地址从0开始，这时候下载地址从0开始的程序，就会出现这种现象。</li>
+<li>没有加载编程算法</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sunskyday/article/details/103618161">https://blog.csdn.net/sunskyday/article/details/103618161</a></p>
+</blockquote>
+<p>使用JLink方法解决的， 先擦除芯片</p>
+<ol>
+<li><p>执行“Target-Manual Programming-Erase Chip”,即可擦除芯片。该操作是全片擦除，即擦除片内所有Flash和掉电保持的寄存器。</p>
+</li>
+<li><p>烧写程序</p>
+</li>
+</ol>
+<ul>
+<li><p>打开编译的程序文件：File-Open data file，导航到待烧写的文件路径，打开文件。</p>
+</li>
+<li><p>按下 “F7”,烧写目标板子。</p>
+</li>
+<li><p>按下 “F9”,开始运行并烧写程序。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/BLE/" rel="tag"># BLE</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/18/Bat%E8%84%9A%E6%9C%AC%E5%9F%BA%E7%A1%80/" rel="prev" title="Bat脚本基础">
+      <i class="fa fa-chevron-left"></i> Bat脚本基础
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">nRF52840开发（一）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDK%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">SDK学习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Components"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Components</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Examples"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">Examples</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Integration-%E5%92%8C-Modules"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">Integration 和 Modules</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E5%92%8C%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">新建和配置工程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MDK5%E5%92%8Cpack%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">MDK5和pack的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Target%E9%80%89%E9%A1%B9%E5%8D%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">Target选项卡配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#C-x2F-C-%E9%80%89%E9%A1%B9%E5%8D%A1"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">C&#x2F;C++选项卡</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Linker%E9%80%89%E9%A1%B9%E5%8D%A1%EF%BC%9A"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">Linker选项卡：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">编译工程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Map-%E6%9F%A5%E7%9C%8B"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">Map 查看</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%A7%E5%86%99%E6%8A%A5%E9%94%99"><span class="nav-number">5.</span> <span class="nav-text">烧写报错</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Miaocf"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Miaocf</p>
+  <div class="site-description" itemprop="description">Keep coding!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/miaocf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;miaocf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:miaochf@shanghaitech.edu.cn" title="E-Mail → mailto:miaochf@shanghaitech.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Sun Jul 04 2021 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Miaocf</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
