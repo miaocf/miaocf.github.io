@@ -834,6 +834,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Miaocf">
+      <meta itemprop="description" content="Keep coding!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1943丶 Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">Android系统架构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-24 01:43:10" itemprop="dateCreated datePublished" datetime="2021-09-24T01:43:10+08:00">2021-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 01:53:28" itemprop="dateModified" datetime="2022-02-24T01:53:28+08:00">2022-02-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>安卓系统整体采用了分层的架构，总共可以分为四层。从高层到低层分别是Android应用层，Android框架层，Android系统运行库层和Linux内核层。整个系统框架图如下图所示。</p>
+<p>Android系统框架主要应用于ARM平台，但不局限于ARM平台，通过编译器控制在X86、MAC等架构的机器上也可以运行。</p>
+<p><img src="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/android-stack_2x-16456382834502.png" alt="Android 软件堆栈"></p>
+<h2 id="Linux-内核层"><a href="#Linux-内核层" class="headerlink" title="Linux 内核层"></a>Linux 内核层</h2><p>安卓平台的基础是2.6版本的Linux内核，内核层主要提供一些底层功能，例如安全、内存管理、进程管理、网络堆栈、驱动模型，谷歌允许设备制造商为Linux内核开发硬件驱动程序。</p>
+<p>Google在Android架构里提出了Hal的概念，这个HAL其实就是独立的意思，Android系统不仅依赖于某一个具体的硬件驱动，而是依赖于Hal代码，这样，第三方厂商可以將自己不开源的代码封装在HAL层，仅仅提供二进制代码。从而避免了GPL协议的污染。</p>
+<h2 id="HAL层"><a href="#HAL层" class="headerlink" title="HAL层"></a>HAL层</h2><p>硬件抽象层（Hardware Abstraction Layer, HAL)，简称为HAL层。 HAL层通过更高级别的Java语言API框架显示设备硬件功能。包含扩个库模块，其中每个模块都为特定类型的硬件组成实现一个界面。例如相机或者蓝牙模块。 当框架API 要求访问硬件时，安卓系统将会加载对应的库模块。HAL层处于系统运行库层，链接Linux层底层硬件驱动和Framework层。</p>
+<p>而Android采用了Apache Licence2.0协议发布，Apache Licence2.0协议并未要求使用基于Apache Licence2.0协议的源代码的软件也必须开源。由于HAL属于Android的一部分，自然也不必开源了。当然加入HAL还有其他目的：统一硬件的调用接口；针对一些特殊的要求。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ww3344/p/5616983.html">https://www.cnblogs.com/ww3344/p/5616983.html</a></p>
+</blockquote>
+<p>HAL 是为了链接<strong>driver与FRAMEWORK层</strong>的很好的东西,方便与app层开发人员,你无须知道driver层的信息,就可以做相关开发。</p>
+<p>driver要有，但是有一部分涉及核心技术的使用hal来保护自己的核心技术不被泄露。换句话就是kernel中的driver调用hal中实现的方法来驱动，这样hal中的源码就不会被暴露出来，只暴露一个接口给kernel调用。kernel中虽然存在着driver，但是具体的实现方法没有，需要调用hal中的方法来具体实现。</p>
+<p>HAL层是为了硬件厂商规避GPL协议而存在的 所以不是必要的条件没有也可以执行 </p>
+<p>然后这个HAL层是为了实现硬件的描述 进行了抽象 ， 对上层提供接口 ，与linux kernel驱动进行通信 数据的读写 。有关硬件实现的细节，本来我们是要在linuxkernel层的驱动实现的 ，这样我们就可以通过HAL层来把硬件实现，既规避了GPL 又能提供接口 。</p>
+<p><img src="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/format,f_auto.jpeg" alt="img"></p>
+<p><img src="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/20140921165631589.png" alt="img"></p>
+<h2 id="运行时库层"><a href="#运行时库层" class="headerlink" title="运行时库层"></a>运行时库层</h2><p><strong>Android Runtime</strong></p>
+<p>Android 5.0 以上版本的系统，每个应用都在自己的进程中运行，并且有自己的Android Runtime (ART)实例。 ART通过执行DEX格式的文件在低内存设备上运行多个虚拟机。</p>
+<p><strong>原生C、C++ 库</strong></p>
+<p>许多核心Android 系统组件和服务的构建依赖C 、 C++ 编写的原生库。 Android通过提供Java框架API 以向应用显示其中部分原生库的功能。</p>
+<h2 id="Framework层"><a href="#Framework层" class="headerlink" title="Framework层"></a>Framework层</h2><p>Framework层主要是由 Java 语言进行编写的API层，同时也是开发者开发过程中大部分涉及到的层。通过 API 接口，开发者可以方便的调用Android系统的整个功能集。Framework层可以简化核心模块系统组件和服务的重复使用。</p>
+<p>Framework层包括活动管理器、窗口管理器、内容提供者、视图系统、包管理器、电话管理器、资源管理器、位置管理器、通知管理器和XMPP服务十个部分。</p>
+<h2 id="Applications层"><a href="#Applications层" class="headerlink" title="Applications层"></a>Applications层</h2><p> Application 层即日常用户最经常接触到的一层架构。用户手机上的一App应用以及Android OS自带的一些原生应用都是存在于应用层。典型的应用有联系人、邮件、日历、地图和短信等。开发者通过编写Java &#x2F; Kotlin语言的应用程序， 与原生系统程序和平共处。</p>
+<blockquote>
+<p>Ref：</p>
+<ol>
+<li>[Android官网]</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/23/Markdown%E6%8A%80%E5%B7%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1572,76 +1665,6 @@
 
 <p><strong>Tip：</strong>python中， 表示路径时， 正斜杠’ \\ ‘需要两条,  反斜杠‘ / ‘只需要一条</p>
 <h2 id="三、-拷贝文件"><a href="#三、-拷贝文件" class="headerlink" title="三、 拷贝文件"></a>三、 拷贝文件</h2><p>引入模块 os<code>, </code>os.path<code>,</code>shutil<code>和</code>pathlib</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/04/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Miaocf">
-      <meta itemprop="description" content="Keep coding!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="1943丶 Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/04/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-04 03:34:00" itemprop="dateCreated datePublished" datetime="2021-07-04T03:34:00+08:00">2021-07-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
