@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-24 00:32:47 / 修改时间：02:03:23" itemprop="dateCreated datePublished" datetime="2022-02-24T00:32:47+08:00">2022-02-24</time>
+              <time title="创建时间：2022-02-24 00:32:47 / 修改时间：02:12:32" itemprop="dateCreated datePublished" datetime="2022-02-24T00:32:47+08:00">2022-02-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,12 +212,14 @@
       
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文主要对hexo的基本指令使用做一个记录。</p>
 <p>包括草稿创建、发表、网页部署、本地模拟、创建页面等。</p>
-<h2 id="发布新文章"><a href="#发布新文章" class="headerlink" title="发布新文章"></a>发布新文章</h2><h5 id="方法1：-直接发表文章"><a href="#方法1：-直接发表文章" class="headerlink" title="方法1： 直接发表文章"></a>方法1： 直接发表文章</h5><p>在hexo的根目录下，运行<code>bash</code>， 键入下述指令：</p>
+<h2 id="发布新文章"><a href="#发布新文章" class="headerlink" title="发布新文章"></a>发布新文章</h2><p><strong>方法1： 直接发表文章</strong></p>
+<p>在hexo的根目录下，运行<code>bash</code>， 键入下述指令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post: title</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224003757497.png" alt="image-20220224003757497"></p>
 <p>执行上述命令后，就会在目录 <code>Blog\source\_posts</code> 文件夹下新生成对应名字的 markdown 文档模板和一个同名的用于存放图片的文件夹。利用 Typora 的自定义偏好设置，可以很方便的在文章中直接插入图片的同时完成图片目录的部署。</p>
-<h5 id="方法2：先写草稿再发表"><a href="#方法2：先写草稿再发表" class="headerlink" title="方法2：先写草稿再发表"></a>方法2：先写草稿再发表</h5><p>在 hexo 根目录下键入下述指令：</p>
+<p><strong>方法2：先写草稿再发表</strong></p>
+<p>在 hexo 根目录下键入下述指令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 
 <p>执行指令后，就会在目录 <code>Blog\source\_drafts</code> 下新建一个 test.md 文件和一个同名的文件夹。在完成文档内容的编辑后，当准备发布草稿的时候，键入：</p>
