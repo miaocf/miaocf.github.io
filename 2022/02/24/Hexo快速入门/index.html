@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简介本文主要对hexo的基本指令使用做一个记录。 包括草稿创建、发表、网页部署、本地模拟、创建页面等。 发布新文章方法1： 直接发表文章在hexo的根目录下，运行bash， 键入下述指令： 1hexo new post: title   执行上述命令后，就会在目录 Blog\source\_posts 文件夹下新生成对应名字的 markdown 文档模板和一个同名的用于存放图片的文件夹。利用 Ty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo快速入门">
+<meta property="og:url" content="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="1943丶 Blog">
+<meta property="og:description" content="简介本文主要对hexo的基本指令使用做一个记录。 包括草稿创建、发表、网页部署、本地模拟、创建页面等。 发布新文章方法1： 直接发表文章在hexo的根目录下，运行bash， 键入下述指令： 1hexo new post: title   执行上述命令后，就会在目录 Blog\source\_posts 文件夹下新生成对应名字的 markdown 文档模板和一个同名的用于存放图片的文件夹。利用 Ty">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224003757497.png">
+<meta property="og:image" content="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224010904556.png">
+<meta property="og:image" content="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224011304589.png">
+<meta property="og:image" content="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224011726491.png">
+<meta property="og:image" content="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224012646309.png">
+<meta property="og:image" content="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224012438452.png">
+<meta property="article:published_time" content="2022-02-23T16:32:47.000Z">
+<meta property="article:modified_time" content="2022-02-23T17:29:25.720Z">
+<meta property="article:author" content="Miaocf">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224003757497.png">
+
+<link rel="canonical" href="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hexo快速入门 | 1943丶 Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">1943丶 Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Miaocf">
+      <meta itemprop="description" content="Keep coding!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1943丶 Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo快速入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-24 00:32:47 / 修改时间：01:29:25" itemprop="dateCreated datePublished" datetime="2022-02-24T00:32:47+08:00">2022-02-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文主要对hexo的基本指令使用做一个记录。</p>
+<p>包括草稿创建、发表、网页部署、本地模拟、创建页面等。</p>
+<h2 id="发布新文章"><a href="#发布新文章" class="headerlink" title="发布新文章"></a>发布新文章</h2><h5 id="方法1：-直接发表文章"><a href="#方法1：-直接发表文章" class="headerlink" title="方法1： 直接发表文章"></a>方法1： 直接发表文章</h5><p>在hexo的根目录下，运行<code>bash</code>， 键入下述指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post: title</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224003757497.png" alt="image-20220224003757497"></p>
+<p>执行上述命令后，就会在目录 <code>Blog\source\_posts</code> 文件夹下新生成对应名字的 markdown 文档模板和一个同名的用于存放图片的文件夹。利用 Typora 的自定义偏好设置，可以很方便的在文章中直接插入图片的同时完成图片目录的部署。</p>
+<h5 id="方法2：先写草稿再发表"><a href="#方法2：先写草稿再发表" class="headerlink" title="方法2：先写草稿再发表"></a>方法2：先写草稿再发表</h5><p>在 hexo 根目录下键入下述指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>执行指令后，就会在目录 <code>Blog\source\_drafts</code> 下新建一个 test.md 文件和一个同名的文件夹。在完成文档内容的编辑后，当准备发布草稿的时候，键入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure>
+
+<p>该指令可以让我们在本地端口 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 试试预览草稿效果。</p>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224010904556.png" alt="image-20220224010904556"></p>
+<p>当最终决定文档撰写完毕，最终发表时，键入指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>该指令将上述的草稿文件和对应的同名文件夹文件从<code>Blog\source\_drafts</code>路径移动到了<code>Blog\source\_posts</code>路径下，此时若执行网页渲染部署，则会体现在最终的效果中。</p>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224011304589.png" alt="image-20220224011304589"></p>
+<h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p><code>Draft</code> 和 <code>Post</code> 统称为 <code>Blog pages</code>， 此外在 hexo 网页上还有一种页面 <code>normal pages</code>, 其路径统一也在<code>source</code>文件夹下，不过文件名没有以下划线开头。</p>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224011726491.png" alt="image-20220224011726491"></p>
+<p>这些页面包括 “about” 、“tags”等。新建这种类型的页面可以通过下述指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page Alg</span><br></pre></td></tr></table></figure>
+
+<p>运行指令后，会在source文件夹下创建名为 Alg 的文件夹，其中有一个 index.md 文件。此时通过 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 网页访问并不会出现在页面内，而是需要在网页后面添加 <code>Alg/</code> 通过 URL 进行访问，即网页：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://localhost:4000/Alg/">http://localhost:4000/Alg/</a></p>
+</blockquote>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224012646309.png" alt="image-20220224012646309"></p>
+<p>综上，我们可以知道 hexo 的页面可以分为三种：</p>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224012438452.png" alt="image-20220224012438452"></p>
+<h2 id="网页发布"><a href="#网页发布" class="headerlink" title="网页发布"></a>网页发布</h2><ol>
+<li><p><code>hexo g</code></p>
+<p>Generator 指令， 该指令可以快速将 <code>hexo</code> 根目录下 <code>source</code> 资源文件夹中的图片、markdown 文档内容转换成 <code>index.html</code> 文件， 并结合当前设置的主体，渲染成最终的静态网页文件，存放于<code>public</code> 文件夹下。</p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-d</code>, <code>--deploy</code></td>
+<td align="left">文件生成后立即部署网站</td>
+</tr>
+<tr>
+<td align="left"><code>-w</code>, <code>--watch</code></td>
+<td align="left">监视文件变动</td>
+</tr>
+<tr>
+<td align="left"><code>-b</code>, <code>--bail</code></td>
+<td align="left">生成过程中如果发生任何未处理的异常则抛出异常</td>
+</tr>
+<tr>
+<td align="left"><code>-f</code>, <code>--force</code></td>
+<td align="left">强制重新生成文件 Hexo 引入了差分机制，如果 <code>public</code> 目录存在，那么 <code>hexo g</code> 只会重新生成改动的文件。 使用该参数的效果接近 <code>hexo clean &amp;&amp; hexo generate</code></td>
+</tr>
+<tr>
+<td align="left"><code>-c</code>, <code>--concurrency</code></td>
+<td align="left">最大同时生成文件的数量，默认无限制</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>hexo server</code></p>
+<p>该指令启动服务器，可以让我们在本地查看网页效果。默认端口为：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-p</code>, <code>--port</code></td>
+<td align="left">重设端口</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code>, <code>--static</code></td>
+<td align="left">只使用静态文件</td>
+</tr>
+<tr>
+<td align="left"><code>-l</code>, <code>--log</code></td>
+<td align="left">启动日记记录，使用覆盖记录格式</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>hexo deploy</code></p>
+<p>部署网址指令，改指令将<code>public</code> 文件夹下的静态网页文件部署到 github 网站上，在本地即体现为将<code>publick</code> 文件夹的内容复制到了<code>.deploy_git</code> 文件夹下。</p>
+</li>
+</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/265b2c653e6f">https://www.jianshu.com/p/265b2c653e6f</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">https://hexo.io/zh-cn/docs/commands</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="nRF52840开发（一）">
+      <i class="fa fa-chevron-left"></i> nRF52840开发（一）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E6%96%B0%E6%96%87%E7%AB%A0"><span class="nav-number">2.</span> <span class="nav-text">发布新文章</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%951%EF%BC%9A-%E7%9B%B4%E6%8E%A5%E5%8F%91%E8%A1%A8%E6%96%87%E7%AB%A0"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">方法1： 直接发表文章</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%952%EF%BC%9A%E5%85%88%E5%86%99%E8%8D%89%E7%A8%BF%E5%86%8D%E5%8F%91%E8%A1%A8"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">方法2：先写草稿再发表</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2"><span class="nav-number">3.</span> <span class="nav-text">新建页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E5%8F%91%E5%B8%83"><span class="nav-number">4.</span> <span class="nav-text">网页发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Miaocf"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Miaocf</p>
+  <div class="site-description" itemprop="description">Keep coding!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/miaocf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;miaocf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:miaochf@shanghaitech.edu.cn" title="E-Mail → mailto:miaochf@shanghaitech.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Sun Jul 04 2021 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Miaocf</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

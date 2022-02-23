@@ -162,6 +162,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Miaocf">
+      <meta itemprop="description" content="Keep coding!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1943丶 Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Hexo快速入门</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-24 00:32:47 / 修改时间：01:29:25" itemprop="dateCreated datePublished" datetime="2022-02-24T00:32:47+08:00">2022-02-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文主要对hexo的基本指令使用做一个记录。</p>
+<p>包括草稿创建、发表、网页部署、本地模拟、创建页面等。</p>
+<h2 id="发布新文章"><a href="#发布新文章" class="headerlink" title="发布新文章"></a>发布新文章</h2><h5 id="方法1：-直接发表文章"><a href="#方法1：-直接发表文章" class="headerlink" title="方法1： 直接发表文章"></a>方法1： 直接发表文章</h5><p>在hexo的根目录下，运行<code>bash</code>， 键入下述指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post: title</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224003757497.png" alt="image-20220224003757497"></p>
+<p>执行上述命令后，就会在目录 <code>Blog\source\_posts</code> 文件夹下新生成对应名字的 markdown 文档模板和一个同名的用于存放图片的文件夹。利用 Typora 的自定义偏好设置，可以很方便的在文章中直接插入图片的同时完成图片目录的部署。</p>
+<h5 id="方法2：先写草稿再发表"><a href="#方法2：先写草稿再发表" class="headerlink" title="方法2：先写草稿再发表"></a>方法2：先写草稿再发表</h5><p>在 hexo 根目录下键入下述指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>执行指令后，就会在目录 <code>Blog\source\_drafts</code> 下新建一个 test.md 文件和一个同名的文件夹。在完成文档内容的编辑后，当准备发布草稿的时候，键入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure>
+
+<p>该指令可以让我们在本地端口 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 试试预览草稿效果。</p>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224010904556.png" alt="image-20220224010904556"></p>
+<p>当最终决定文档撰写完毕，最终发表时，键入指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>该指令将上述的草稿文件和对应的同名文件夹文件从<code>Blog\source\_drafts</code>路径移动到了<code>Blog\source\_posts</code>路径下，此时若执行网页渲染部署，则会体现在最终的效果中。</p>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224011304589.png" alt="image-20220224011304589"></p>
+<h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p><code>Draft</code> 和 <code>Post</code> 统称为 <code>Blog pages</code>， 此外在 hexo 网页上还有一种页面 <code>normal pages</code>, 其路径统一也在<code>source</code>文件夹下，不过文件名没有以下划线开头。</p>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224011726491.png" alt="image-20220224011726491"></p>
+<p>这些页面包括 “about” 、“tags”等。新建这种类型的页面可以通过下述指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page Alg</span><br></pre></td></tr></table></figure>
+
+<p>运行指令后，会在source文件夹下创建名为 Alg 的文件夹，其中有一个 index.md 文件。此时通过 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 网页访问并不会出现在页面内，而是需要在网页后面添加 <code>Alg/</code> 通过 URL 进行访问，即网页：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://localhost:4000/Alg/">http://localhost:4000/Alg/</a></p>
+</blockquote>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224012646309.png" alt="image-20220224012646309"></p>
+<p>综上，我们可以知道 hexo 的页面可以分为三种：</p>
+<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224012438452.png" alt="image-20220224012438452"></p>
+<h2 id="网页发布"><a href="#网页发布" class="headerlink" title="网页发布"></a>网页发布</h2><ol>
+<li><p><code>hexo g</code></p>
+<p>Generator 指令， 该指令可以快速将 <code>hexo</code> 根目录下 <code>source</code> 资源文件夹中的图片、markdown 文档内容转换成 <code>index.html</code> 文件， 并结合当前设置的主体，渲染成最终的静态网页文件，存放于<code>public</code> 文件夹下。</p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-d</code>, <code>--deploy</code></td>
+<td align="left">文件生成后立即部署网站</td>
+</tr>
+<tr>
+<td align="left"><code>-w</code>, <code>--watch</code></td>
+<td align="left">监视文件变动</td>
+</tr>
+<tr>
+<td align="left"><code>-b</code>, <code>--bail</code></td>
+<td align="left">生成过程中如果发生任何未处理的异常则抛出异常</td>
+</tr>
+<tr>
+<td align="left"><code>-f</code>, <code>--force</code></td>
+<td align="left">强制重新生成文件 Hexo 引入了差分机制，如果 <code>public</code> 目录存在，那么 <code>hexo g</code> 只会重新生成改动的文件。 使用该参数的效果接近 <code>hexo clean &amp;&amp; hexo generate</code></td>
+</tr>
+<tr>
+<td align="left"><code>-c</code>, <code>--concurrency</code></td>
+<td align="left">最大同时生成文件的数量，默认无限制</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>hexo server</code></p>
+<p>该指令启动服务器，可以让我们在本地查看网页效果。默认端口为：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-p</code>, <code>--port</code></td>
+<td align="left">重设端口</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code>, <code>--static</code></td>
+<td align="left">只使用静态文件</td>
+</tr>
+<tr>
+<td align="left"><code>-l</code>, <code>--log</code></td>
+<td align="left">启动日记记录，使用覆盖记录格式</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>hexo deploy</code></p>
+<p>部署网址指令，改指令将<code>public</code> 文件夹下的静态网页文件部署到 github 网站上，在本地即体现为将<code>publick</code> 文件夹的内容复制到了<code>.deploy_git</code> 文件夹下。</p>
+</li>
+</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/265b2c653e6f">https://www.jianshu.com/p/265b2c653e6f</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">https://hexo.io/zh-cn/docs/commands</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1643,90 +1799,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/29/%E5%8A%A8%E6%80%81%E5%BA%93dll%E5%8F%8A%E9%9D%99%E6%80%81%E8%B0%83%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Miaocf">
-      <meta itemprop="description" content="Keep coding!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="1943丶 Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/29/%E5%8A%A8%E6%80%81%E5%BA%93dll%E5%8F%8A%E9%9D%99%E6%80%81%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">动态库dll及静态调用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-29 03:11:22" itemprop="dateCreated datePublished" datetime="2021-06-29T03:11:22+08:00">2021-06-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-31 03:56:51" itemprop="dateModified" datetime="2021-07-31T03:56:51+08:00">2021-07-31</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-静态库生成"><a href="#1-静态库生成" class="headerlink" title="1. 静态库生成"></a>1. 静态库生成</h2><p>新建dll工程，编写.c和.h文件， 编译工程生成dll文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&quot;myadd.h&quot;</span><br><span class="line"></span><br><span class="line">int myadd(int a, int b)</span><br><span class="line">&#123;</span><br><span class="line">	return a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#ifndef MYADD_H_</span><br><span class="line">#define MYADD_H_</span><br><span class="line">int myadd(int a, int b);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#endif /* MYADD_H_ */</span><br></pre></td></tr></table></figure>
-
-<p>新建myadd.def文件，键入以下、</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LIBRARY myadd</span><br><span class="line">EXPORTS</span><br><span class="line">add</span><br><span class="line">sub     </span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-静态库的使用"><a href="#2-静态库的使用" class="headerlink" title="2. 静态库的使用"></a>2. 静态库的使用</h2><p>新建可执行文件工程，将上一步生成的dll文件复制到对应的文件夹中。</p>
-<p>使用dll文件分为两种</p>
-<ul>
-<li>静态调用： 目前是这种</li>
-<li>动态调用</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据DLL文件名 加载DLL</span></span><br><span class="line"><span class="comment">// suc，返回一个模块句柄</span></span><br><span class="line"><span class="function">HMODULE WINAPI <span class="title">LoadLibrary</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  _In_ LPCTSTR lpFileName</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line"><span class="comment">// suc,返回lpProcName指向的函数名的函数地址。</span></span><br><span class="line"><span class="function">FARPROC <span class="title">GetProcAddress</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  HMODULE hModule,</span></span></span><br><span class="line"><span class="params"><span class="function">  LPCSTR  lpProcName</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	HMODULE <span class="keyword">module</span> = LoadLibrary(<span class="string">&quot;libDLLProject.dll&quot;</span>);</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">module</span> == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;加载DLLTest1.dll动态库失败\n&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">typedef</span> <span class="title">int</span><span class="params">(*AddFunc)</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>; <span class="comment">// 定义函数指针类型</span></span><br><span class="line">	AddFunc add;</span><br><span class="line">	add = (AddFunc)GetProcAddress(<span class="keyword">module</span>, <span class="string">&quot;myadd&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;3 + 4 = %d&quot;</span>, add(<span class="number">3</span>,<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">&quot;!!!Hello World!!!!!&quot;</span>); <span class="comment">/* prints !!!Hello World!!! */</span></span><br><span class="line">	<span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1793,14 +1870,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
