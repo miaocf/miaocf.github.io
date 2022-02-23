@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223025746216.png">
 <meta property="og:image" content="http://example.com/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223024542799.png">
 <meta property="article:published_time" content="2022-02-22T15:56:19.000Z">
-<meta property="article:modified_time" content="2022-02-23T18:03:54.859Z">
+<meta property="article:modified_time" content="2022-02-23T18:15:07.897Z">
 <meta property="article:author" content="Miaocf">
 <meta property="article:tag" content="BLE">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 02:03:54" itemprop="dateModified" datetime="2022-02-24T02:03:54+08:00">2022-02-24</time>
+                <time title="修改时间：2022-02-24 02:15:07" itemprop="dateModified" datetime="2022-02-24T02:15:07+08:00">2022-02-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,32 +230,32 @@
         <h2 id="nRF52840开发（一）"><a href="#nRF52840开发（一）" class="headerlink" title="nRF52840开发（一）"></a>nRF52840开发（一）</h2><p>在安装好运行环境后，开始了解新建和配置裸机工程。</p>
 <h2 id="SDK学习"><a href="#SDK学习" class="headerlink" title="SDK学习"></a>SDK学习</h2><p>Nordic工程SDK17的工程目录如下：</p>
 <p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011143496.png" alt="image-20220223011143496"></p>
-<h5 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h5><p>包含了开发是需要用到的各种库。其目录如下：</p>
+<h3 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h3><p>包含了开发是需要用到的各种库。其目录如下：</p>
 <p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011323701.png" alt="image-20220223011323701"></p>
-<h5 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h5><p>该目录下存放着是SDK中所有的例子源码没包括BLE从机、BLE主机、BLE主从一体、芯片外设等例子程序。每个例子下都包含了刴个开发环境下的许多个工程，使用时需要注意区别。</p>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>该目录下存放着是SDK中所有的例子源码没包括BLE从机、BLE主机、BLE主从一体、芯片外设等例子程序。每个例子下都包含了刴个开发环境下的许多个工程，使用时需要注意区别。</p>
 <p>这里我们以“蓝牙心率计”为例，打开<code>examples\ble_peripheral\ble_app_hrs</code>目录，该路径下有许多开发板对应的型号，其中我们使用的52840即对应着 “pca10056”文件夹。此外nRf52840对应的BLE协议是 S140。</p>
 <p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011853164.png" alt="image-20220223011853164"></p>
-<h5 id="Integration-和-Modules"><a href="#Integration-和-Modules" class="headerlink" title="Integration 和 Modules"></a>Integration 和 Modules</h5><p>Integration 中存放的是旧版本的芯片外设驱动程序，对应的 SDK 版本为15.0之前的版本； modules 中存放的是芯片新版本的外设驱动程序。在SDK15.0版本之后， Nordic 开始重新编写外设驱动程序，并命名为<code>nrfx</code>, 放置modules 目录下。</p>
+<h3 id="Integration-和-Modules"><a href="#Integration-和-Modules" class="headerlink" title="Integration 和 Modules"></a>Integration 和 Modules</h3><p>Integration 中存放的是旧版本的芯片外设驱动程序，对应的 SDK 版本为15.0之前的版本； modules 中存放的是芯片新版本的外设驱动程序。在SDK15.0版本之后， Nordic 开始重新编写外设驱动程序，并命名为<code>nrfx</code>, 放置modules 目录下。</p>
 <h2 id="新建和配置工程"><a href="#新建和配置工程" class="headerlink" title="新建和配置工程"></a>新建和配置工程</h2><p>nRf52840可以用 MDK5 和 IAR 集成开发环境来开发程序。</p>
-<h5 id="MDK5和pack的关系"><a href="#MDK5和pack的关系" class="headerlink" title="MDK5和pack的关系"></a>MDK5和pack的关系</h5><p>MDK5 与之前版本的区别： 早期版本期间（Software Packs）与编译器（MDK core) 分离，所以需要自己来配置期间，方便灵活管理。</p>
+<h3 id="MDK5和pack的关系"><a href="#MDK5和pack的关系" class="headerlink" title="MDK5和pack的关系"></a>MDK5和pack的关系</h3><p>MDK5 与之前版本的区别： 早期版本期间（Software Packs）与编译器（MDK core) 分离，所以需要自己来配置期间，方便灵活管理。</p>
 <p>参考工程目录：</p>
 <p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223013108066.png" alt="image-20220223013108066"></p>
 <p>按需添加各个驱动文件和头文件后，复制<code>sdk_config.h</code>文件至<code>...\project\config</code> 目录， 文件原可以从官方的实例文件中找类似的项目，实际使用的时候进行适当的修改配置。 目录为<code>...\pca10056\s140\config</code></p>
-<h5 id="Target选项卡配置"><a href="#Target选项卡配置" class="headerlink" title="Target选项卡配置"></a>Target选项卡配置</h5><p>52840 芯片的片内 FLASH 是 1MB， 对应的16进制是  0x100000, 片内 RAM 是 256 KB， 对应的16进制是： 0x40000。 如下图所示：</p>
+<h3 id="Target选项卡配置"><a href="#Target选项卡配置" class="headerlink" title="Target选项卡配置"></a>Target选项卡配置</h3><p>52840 芯片的片内 FLASH 是 1MB， 对应的16进制是  0x100000, 片内 RAM 是 256 KB， 对应的16进制是： 0x40000。 如下图所示：</p>
 <p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223020622200.png" alt="image-20220223020622200"></p>
-<h5 id="C-x2F-C-选项卡"><a href="#C-x2F-C-选项卡" class="headerlink" title="C&#x2F;C++选项卡"></a>C&#x2F;C++选项卡</h5><p><code>One ELF Secion per Function</code>选项：</p>
+<h3 id="C-x2F-C-选项卡"><a href="#C-x2F-C-选项卡" class="headerlink" title="C&#x2F;C++选项卡"></a>C&#x2F;C++选项卡</h3><p><code>One ELF Secion per Function</code>选项：</p>
 <p>该选项的机制是将每一个函数作为一个优化单元，而非整个文件作为参与优化的单元。实际作用体现在大工程中，对于库函数中冗余函数的剔除。</p>
 <p><code>C99 Mode</code>选项：</p>
 <p>该选项允许变量的声明放在可执行语句的后面，使用组件库的时候需要勾选这个选项。</p>
 <p><code>Misc Controls</code> 栏：</p>
 <p>输入<code>--reduce_paths</code>, 可以设置MDK 自动消除冗余路径。</p>
-<h5 id="Linker选项卡："><a href="#Linker选项卡：" class="headerlink" title="Linker选项卡："></a>Linker选项卡：</h5><p>该选项卡中主要配置的是忽略告警设置。 BLE 工程编译的时候会产生 6330 的警告，因此在<code>Misc control</code>栏中加入 <code>--diag_suppress 6330</code>， 忽略告警。</p>
-<h3 id><a href="#" class="headerlink" title></a></h3><h2 id="编译工程"><a href="#编译工程" class="headerlink" title="编译工程"></a>编译工程</h2><ul>
+<h3 id="Linker选项卡："><a href="#Linker选项卡：" class="headerlink" title="Linker选项卡："></a>Linker选项卡：</h3><p>该选项卡中主要配置的是忽略告警设置。 BLE 工程编译的时候会产生 6330 的警告，因此在<code>Misc control</code>栏中加入 <code>--diag_suppress 6330</code>， 忽略告警。</p>
+<h2 id="编译工程"><a href="#编译工程" class="headerlink" title="编译工程"></a>编译工程</h2><ul>
 <li><code>Translate</code>: 编译当前打开的活动文档</li>
 <li><code>Build</code>: 增量编译，编译工程中上次修改的文件及其他依赖于这些修改过文件的模块，同时重新链接生成可执行文件。如果工程之前没编译链接过，它会直接调用<code>Rebuild ALL</code>.</li>
 <li><code>Rebuild All</code>: 全部重新编译。</li>
 </ul>
-<h5 id="Map-查看"><a href="#Map-查看" class="headerlink" title="Map 查看"></a>Map 查看</h5><p>双击工程名，即可快速查看工程Map文件</p>
+<h2 id="Map-查看"><a href="#Map-查看" class="headerlink" title="Map 查看"></a>Map 查看</h2><p>双击工程名，即可快速查看工程Map文件</p>
 <p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223025746216.png" alt="image-20220223025746216"></p>
 <h2 id="烧写报错"><a href="#烧写报错" class="headerlink" title="烧写报错"></a>烧写报错</h2><p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223024542799.png" alt="image-20220223024542799"></p>
 <p>原因： </p>
@@ -364,7 +364,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">nRF52840开发（一）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDK%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">SDK学习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Components"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Components</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Examples"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">Examples</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Integration-%E5%92%8C-Modules"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">Integration 和 Modules</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E5%92%8C%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">新建和配置工程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MDK5%E5%92%8Cpack%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">MDK5和pack的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Target%E9%80%89%E9%A1%B9%E5%8D%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">Target选项卡配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#C-x2F-C-%E9%80%89%E9%A1%B9%E5%8D%A1"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">C&#x2F;C++选项卡</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Linker%E9%80%89%E9%A1%B9%E5%8D%A1%EF%BC%9A"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">Linker选项卡：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">编译工程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Map-%E6%9F%A5%E7%9C%8B"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">Map 查看</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%A7%E5%86%99%E6%8A%A5%E9%94%99"><span class="nav-number">5.</span> <span class="nav-text">烧写报错</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">nRF52840开发（一）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDK%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">SDK学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Components"><span class="nav-number">2.1.</span> <span class="nav-text">Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples"><span class="nav-number">2.2.</span> <span class="nav-text">Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Integration-%E5%92%8C-Modules"><span class="nav-number">2.3.</span> <span class="nav-text">Integration 和 Modules</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E5%92%8C%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">新建和配置工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MDK5%E5%92%8Cpack%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.1.</span> <span class="nav-text">MDK5和pack的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Target%E9%80%89%E9%A1%B9%E5%8D%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">3.2.</span> <span class="nav-text">Target选项卡配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-x2F-C-%E9%80%89%E9%A1%B9%E5%8D%A1"><span class="nav-number">3.3.</span> <span class="nav-text">C&#x2F;C++选项卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linker%E9%80%89%E9%A1%B9%E5%8D%A1%EF%BC%9A"><span class="nav-number">3.4.</span> <span class="nav-text">Linker选项卡：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">编译工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map-%E6%9F%A5%E7%9C%8B"><span class="nav-number">5.</span> <span class="nav-text">Map 查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%A7%E5%86%99%E6%8A%A5%E9%94%99"><span class="nav-number">6.</span> <span class="nav-text">烧写报错</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
