@@ -162,6 +162,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/02/ADB%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Miaocf">
+      <meta itemprop="description" content="Keep coding!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1943丶 Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/02/ADB%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">ADB命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-02 02:18:22" itemprop="dateCreated datePublished" datetime="2021-07-02T02:18:22+08:00">2021-07-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 01:59:26" itemprop="dateModified" datetime="2022-02-24T01:59:26+08:00">2022-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ADB/" itemprop="url" rel="index"><span itemprop="name">ADB</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一-输入事件"><a href="#一-输入事件" class="headerlink" title="一. 输入事件"></a>一. 输入事件</h2><ol>
+<li><p>输入文本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input text <span class="string">&quot;HelloWorld&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模拟按键(x， y)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input tap 900 1200</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模拟动作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input swipe 100 200 400 600</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他动作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">The sources are:</span><br><span class="line">      dpad</span><br><span class="line">      keyboard</span><br><span class="line">      mouse</span><br><span class="line">      touchpad</span><br><span class="line">      gamepad</span><br><span class="line">      touchnavigation</span><br><span class="line">      joystick</span><br><span class="line">      touchscreen</span><br><span class="line">      stylus</span><br><span class="line">      trackball</span><br><span class="line"></span><br><span class="line">-d: specify the display ID.</span><br><span class="line">      (Default: -1 <span class="keyword">for</span> key event, 0 <span class="keyword">for</span> motion event <span class="keyword">if</span> not specified.)</span><br><span class="line">The commands and default sources are:</span><br><span class="line">      text &lt;string&gt; (Default: touchscreen)</span><br><span class="line">      keyevent [--longpress] &lt;key code number or name&gt; ... (Default: keyboard)</span><br><span class="line">      tap &lt;x&gt; &lt;y&gt; (Default: touchscreen)</span><br><span class="line">      swipe &lt;x1&gt; &lt;y1&gt; &lt;x2&gt; &lt;y2&gt; [duration(ms)] (Default: touchscreen)</span><br><span class="line">      draganddrop &lt;x1&gt; &lt;y1&gt; &lt;x2&gt; &lt;y2&gt; [duration(ms)] (Default: touchscreen)</span><br><span class="line">      press (Default: trackball)</span><br><span class="line">      roll &lt;dx&gt; &lt;dy&gt; (Default: trackball)</span><br><span class="line">      event &lt;DOWN|UP|MOVE&gt; &lt;x&gt; &lt;y&gt; (Default: touchscreen)</span><br><span class="line">      tmode &lt;tmode&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>延时事件（bat)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">timeout /t 10</span><br><span class="line">:: 10 means ten seconds.	</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二-事件输出"><a href="#二-事件输出" class="headerlink" title="二. 事件输出"></a>二. 事件输出</h2><ol>
+<li><p>日志信息</p>
+<p>键入adb logcat指令会显示日志信息， 使用<strong>ctrl + C</strong>用来停止输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dumpsys</p>
+<p>dumsys命令可以提供非常多的系统信息，可通过adb shell service list来查看dumpsys可查看的信息服务，常用的有</p>
+<table>
+<thead>
+<tr>
+<th align="center">服务</th>
+<th align="center">类名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">activity</td>
+<td align="center">ActivityManagerService</td>
+<td align="center">AMS相关信息</td>
+</tr>
+<tr>
+<td align="center">package</td>
+<td align="center">PackageManagerService</td>
+<td align="center">PMS相关信息</td>
+</tr>
+<tr>
+<td align="center">windows</td>
+<td align="center">WindowManagerService</td>
+<td align="center">WMS相关信息</td>
+</tr>
+<tr>
+<td align="center">input</td>
+<td align="center">InputManagerService</td>
+<td align="center">IMS相关信息</td>
+</tr>
+<tr>
+<td align="center">power</td>
+<td align="center">PowerManagerService</td>
+<td align="center">PMS相关细信息</td>
+</tr>
+<tr>
+<td align="center">procstats</td>
+<td align="center">ProcessStateService</td>
+<td align="center">进程统计</td>
+</tr>
+<tr>
+<td align="center">battery</td>
+<td align="center">BatteryService</td>
+<td align="center">电池信息</td>
+</tr>
+<tr>
+<td align="center">alarm</td>
+<td align="center">AlarmManagerService</td>
+<td align="center">闹钟信息</td>
+</tr>
+<tr>
+<td align="center">meminfo</td>
+<td align="center">MemBinder</td>
+<td align="center">内存</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/29/%E5%8A%A8%E6%80%81%E5%BA%93dll%E5%8F%8A%E9%9D%99%E6%80%81%E8%B0%83%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -320,7 +476,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
