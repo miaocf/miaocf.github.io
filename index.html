@@ -162,6 +162,76 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Miaocf">
+      <meta itemprop="description" content="Keep coding!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1943丶 Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/" class="post-title-link" itemprop="url">nRF52840开发（三）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-23 02:16:45" itemprop="dateCreated datePublished" datetime="2022-03-23T02:16:45+08:00">2022-03-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>艾姆克教程第七章。主要学习GPIO输出驱动有源蜂鸣器。</p>
+<h2 id="蜂鸣器分类"><a href="#蜂鸣器分类" class="headerlink" title="蜂鸣器分类"></a>蜂鸣器分类</h2><ul>
+<li>有源蜂鸣器： 有源蜂鸣器内部带震荡源，只要一通电就会响。</li>
+<li>无源蜂鸣器： 内部不带震荡源，所以用直流信号无法令其鸣响，必须用频率信号去驱动它。</li>
+</ul>
+<h2 id="电路原理"><a href="#电路原理" class="headerlink" title="电路原理"></a>电路原理</h2><p>开发板上使用的是3V有源蜂鸣器，其原理图如下：</p>
+<p><img src="/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020307131.png" alt="image-20220323020307131"></p>
+<p>  开发板上我们用一个NPN三极管 9013来实现开关功能，对应的链接52840 的 P1.07 管脚， 当输出低电平时，三极管处于截止状态，蜂鸣器和地之间断开，不鸣响； 当输出高电平时，导通地和蜂鸣器，发出鸣响。其中 R6 为保证三极管可靠截止的电阻。</p>
+<p><img src="/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020246498.png" alt="image-20220323020246498"></p>
+<h2 id="硬件链接"><a href="#硬件链接" class="headerlink" title="硬件链接"></a>硬件链接</h2><p>导通开发板上P1.07 和 BUZZ 之间的管脚。</p>
+<p><img src="/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020740402.png" alt="image-20220323020740402"></p>
+<h2 id="主程序"><a href="#主程序" class="headerlink" title="主程序"></a>主程序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span>   </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;nrf_delay.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;boards.h&quot;</span></span></span><br><span class="line"><span class="comment">//Log需要引用的头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;nrf_log.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;nrf_log_ctrl.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;nrf_log_default_backends.h&quot;</span></span></span><br><span class="line"><span class="comment">/* 试验需要用到IK-52840DK开发板中的蜂鸣器,占用的nRF52840引脚资源如下</span></span><br><span class="line"><span class="comment">P1.07：输出：驱动蜂鸣器</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">需要用跳线帽短接P1.07</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义驱动蜂鸣器的引脚P1.07</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  BEEP_PIN   NRF_GPIO_PIN_MAP(1,7)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//日志打印模块初始化</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">log_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//初始化log程序模块</span></span><br><span class="line">	  <span class="keyword">ret_code_t</span> err_code = NRF_LOG_INIT(<span class="literal">NULL</span>);</span><br><span class="line">    APP_ERROR_CHECK(err_code);</span><br><span class="line">    <span class="comment">//设置log输出终端（根据sdk_config.h中的配置设置输出终端为UART或者RTT）</span></span><br><span class="line">    NRF_LOG_DEFAULT_BACKENDS_INIT();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/***************************************************************************</span></span><br><span class="line"><span class="comment">* 描  述 : 设置GPIO高电平时的输出电压为3.3V </span></span><br><span class="line"><span class="comment">* 入  参 : 无 </span></span><br><span class="line"><span class="comment">* 返回值 : 无</span></span><br><span class="line"><span class="comment">**************************************************************************/</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gpio_output_voltage_setup_3v3</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//读取UICR_REGOUT0寄存器，判断当前GPIO输出电压设置的是不是3.3V，如果不是，设置成3.3V</span></span><br><span class="line">    <span class="keyword">if</span> ((NRF_UICR-&gt;REGOUT0 &amp; UICR_REGOUT0_VOUT_Msk) !=</span><br><span class="line">        (UICR_REGOUT0_VOUT_3V3 &lt;&lt; UICR_REGOUT0_VOUT_Pos))</span><br><span class="line">    &#123;</span><br><span class="line">        NRF_NVMC-&gt;CONFIG = NVMC_CONFIG_WEN_Wen;</span><br><span class="line">        <span class="keyword">while</span> (NRF_NVMC-&gt;READY == NVMC_READY_READY_Busy)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        NRF_UICR-&gt;REGOUT0 = (NRF_UICR-&gt;REGOUT0 &amp; ~((<span class="keyword">uint32_t</span>)UICR_REGOUT0_VOUT_Msk)) |</span><br><span class="line">                            (UICR_REGOUT0_VOUT_3V3 &lt;&lt; UICR_REGOUT0_VOUT_Pos);</span><br><span class="line"></span><br><span class="line">        NRF_NVMC-&gt;CONFIG = NVMC_CONFIG_WEN_Ren;</span><br><span class="line">        <span class="keyword">while</span> (NRF_NVMC-&gt;READY == NVMC_READY_READY_Busy)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//复位更新UICR寄存器</span></span><br><span class="line">        NVIC_SystemReset();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//配置UICR_REGOUT0寄存器，设置GPIO输出3.3V电压</span></span><br><span class="line">	gpio_output_voltage_setup_3v3();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//初始化log程序模块，因为本例中没有加入UART相关的文件，因此只能用RTT打印</span></span><br><span class="line">	log_init();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//配置用于驱动蜂鸣器的引脚，即配置P1.07为输出</span></span><br><span class="line">	nrf_gpio_cfg_output(BEEP_PIN);</span><br><span class="line">	<span class="comment">//P1.07输出低电平，即蜂鸣器停止鸣响</span></span><br><span class="line">	nrf_gpio_pin_clear(BEEP_PIN); </span><br><span class="line">	</span><br><span class="line">  	<span class="comment">//LOG打印启动信息</span></span><br><span class="line">  	NRF_LOG_INFO(<span class="string">&quot;beep example started&quot;</span>);	</span><br><span class="line">	NRF_LOG_FLUSH();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)  </span><br><span class="line">	&#123;  </span><br><span class="line">	  <span class="comment">//翻转P1.07状态</span></span><br><span class="line">	  nrf_gpio_pin_toggle(BEEP_PIN);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//软件延时500ms</span></span><br><span class="line">	  nrf_delay_ms(<span class="number">500</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1755,121 +1825,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/08/Python%20OS%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Miaocf">
-      <meta itemprop="description" content="Keep coding!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="1943丶 Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/08/Python%20OS%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Python OS 文件/目录方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-08 03:11:22" itemprop="dateCreated datePublished" datetime="2021-07-08T03:11:22+08:00">2021-07-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 02:04:13" itemprop="dateModified" datetime="2022-02-24T02:04:13+08:00">2022-02-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一-模块OS"><a href="#一-模块OS" class="headerlink" title="一. 模块OS"></a>一. 模块OS</h2><p>Python的OS模块提供了各类方法来处理文件和目录，常用的方法有以下：</p>
-<h3 id="1-os-listdir-path"><a href="#1-os-listdir-path" class="headerlink" title="1. os.listdir(path)"></a>1. os.listdir(path)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">rootdir = <span class="string">&#x27;F:\code&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  列举目标文件夹下的文件名列表</span></span><br><span class="line"><span class="built_in">list</span> = os.listdir(rootdir)</span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> <span class="built_in">list</span>:</span><br><span class="line">    <span class="comment"># 拼接文件路径名</span></span><br><span class="line">    os.path.join(rootdir, name)</span><br><span class="line">	<span class="built_in">print</span>(name)</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-os-chdir-path"><a href="#2-os-chdir-path" class="headerlink" title="2. os.chdir(path)"></a>2. os.chdir(path)</h3><p>该方法用于改变当前工作目录到指定的路径。允许访问返回True, 不允许访问返回False</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"></span><br><span class="line">path = <span class="string">&quot;/tmp&quot;</span></span><br><span class="line"><span class="comment"># 查看当前工作目录</span></span><br><span class="line">retval = os.getcwd()</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;当前工作目录为 %s&quot;</span> % retval</span><br><span class="line"><span class="comment"># 修改当前工作目录</span></span><br><span class="line">os.chdir( path )</span><br><span class="line"><span class="comment"># 查看修改后的工作目录</span></span><br><span class="line">retval = os.getcwd()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;目录修改成功 %s&quot;</span> % retval</span><br></pre></td></tr></table></figure>
-
-<p>输出结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当前工作目录为 /www</span><br><span class="line">目录修改成功 /tmp</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-os-getcwd"><a href="#3-os-getcwd" class="headerlink" title="3. os.getcwd()"></a>3. os.getcwd()</h3><p>该方法用于获取当前工作路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">printf(os.getcwd())</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/python/os-file-methods.html">https://www.runoob.com/python/os-file-methods.html</a></p>
-<h3 id="4-os-path-join-path1-path2"><a href="#4-os-path-join-path1-path2" class="headerlink" title="4. os.path.join(path1, path2)"></a>4. os.path.join(path1, path2)</h3><p>该方法用于拼接目录</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">rootDir = <span class="string">&#x27;F:\code&#x27;</span></span><br><span class="line">targetFile = <span class="string">&#x27;text.txt&#x27;</span></span><br><span class="line"></span><br><span class="line">targetDir = os.path.join(rootDir, targetFile)</span><br><span class="line"><span class="built_in">print</span>(targetDir)</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出： F:\code\text.txt  <span class="comment">#新增了&#x27;\&#x27;号</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="二、-文件读写方法"><a href="#二、-文件读写方法" class="headerlink" title="二、 文件读写方法"></a>二、 文件读写方法</h2><h3 id="1-open-‘fileName’-mode"><a href="#1-open-‘fileName’-mode" class="headerlink" title="1. open(‘fileName’, mode)"></a>1. open(‘fileName’, mode)</h3><p>该方法用来打开文件，其中还可以带第三个参数： 指定编码格式 encoding &#x3D; ‘utf-8’</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">targetFile = <span class="string">&#x27;F:\code\text.txt&#x27;</span></span><br><span class="line"><span class="comment"># 模式包括 &#x27;r&#x27;, &#x27;rb&#x27;, &#x27;a&#x27;, &#x27;w&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(targetFile, <span class="string">&#x27;r&#x27;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment"># 输出文件中所有内容</span></span><br><span class="line">	<span class="comment"># printf(f.read())</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">        <span class="built_in">print</span>(line.strip())   <span class="comment">#Tip： 这里strip为去掉每行末尾的换行符。</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>f.read( ) : 一次性读取整个文件数据</p>
-</li>
-<li><p>f.readline( ), 一次读取<strong>一行</strong>数据</p>
-</li>
-<li><p>f.readlines( ),  一次性读取所有数据，并以<strong>List</strong>形式返回。</p>
-</li>
-</ul>
-<p>注意： with open(file) as f 的方法，相对于直接f &#x3D; open(file)更推荐，因为第二种方法如果打开文件失败，则会报错，且报错后不执行f.close()。 因此需要等价使用try… finally 语句，如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;/path/&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(f.read())</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="keyword">if</span> f:</span><br><span class="line">        f.close()</span><br></pre></td></tr></table></figure>
-
-<p>每次都这么写太麻烦，因此引入with open … as f 语句， 两者等价，且不需要显示调用f.close().</p>
-<h3 id="2-f-write-“Text”"><a href="#2-f-write-“Text”" class="headerlink" title="2. f.write(“Text”)"></a>2. f.write(“Text”)</h3><p>将内容写入文件的方法大致同上， 应用打开的文件变量，直接f.write( )即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;D:\\text.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">f.write(<span class="string">&quot;MiaoChaoFeng.&quot;</span>)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
-
-<p><strong>Tip：</strong>python中， 表示路径时， 正斜杠’ \\ ‘需要两条,  反斜杠‘ &#x2F; ‘只需要一条</p>
-<h2 id="三、-拷贝文件"><a href="#三、-拷贝文件" class="headerlink" title="三、 拷贝文件"></a>三、 拷贝文件</h2><p>引入模块 os<code>, </code>os.path<code>,</code>shutil<code>和</code>pathlib</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1941,7 +1896,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
