@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="简介安卓系统整体采用了分层的架构，总共可以分为四层。从高层到低层分别是Android应用层，Android框架层，Android系统运行库层和Linux内核层。整个系统框架图如下图所示。 Android系统框架主要应用于ARM平台，但不局限于ARM平台，通过编译器控制在X86、MAC等架构的机器上也可以运行。  Linux 内核层安卓平台的基础是2.6版本的Linux内核，内核层主要提供一些底层功">
+  <meta name="description" content="简介安卓系统整体采用了分层的架构，总共可以分为四层。从高层到低层分别是Android应用层，Android框架层，Android系统运行库层和Linux内核层。整个系统框架图如下图所示。 Android系统框架主要应用于ARM平台，但不局限于ARM平台，通过编译器控制在X86、MAC等架构的机器上也可以运行。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android系统架构">
 <meta property="og:url" content="http://example.com/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="1943丶 Blog">
-<meta property="og:description" content="简介安卓系统整体采用了分层的架构，总共可以分为四层。从高层到低层分别是Android应用层，Android框架层，Android系统运行库层和Linux内核层。整个系统框架图如下图所示。 Android系统框架主要应用于ARM平台，但不局限于ARM平台，通过编译器控制在X86、MAC等架构的机器上也可以运行。  Linux 内核层安卓平台的基础是2.6版本的Linux内核，内核层主要提供一些底层功">
+<meta property="og:description" content="简介安卓系统整体采用了分层的架构，总共可以分为四层。从高层到低层分别是Android应用层，Android框架层，Android系统运行库层和Linux内核层。整个系统框架图如下图所示。 Android系统框架主要应用于ARM平台，但不局限于ARM平台，通过编译器控制在X86、MAC等架构的机器上也可以运行。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/android-stack_2x-16456382834502.png">
 <meta property="og:image" content="http://example.com/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/format,f_auto.jpeg">
 <meta property="og:image" content="http://example.com/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/20140921165631589.png">
 <meta property="article:published_time" content="2021-09-23T17:43:10.000Z">
-<meta property="article:modified_time" content="2022-02-23T17:59:42.171Z">
+<meta property="article:modified_time" content="2022-03-23T18:48:52.896Z">
 <meta property="article:author" content="Miaocf">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 01:59:42" itemprop="dateModified" datetime="2022-02-24T01:59:42+08:00">2022-02-24</time>
+                <time title="修改时间：2022-03-24 02:48:52" itemprop="dateModified" datetime="2022-03-24T02:48:52+08:00">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,6 +226,8 @@
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>安卓系统整体采用了分层的架构，总共可以分为四层。从高层到低层分别是Android应用层，Android框架层，Android系统运行库层和Linux内核层。整个系统框架图如下图所示。</p>
 <p>Android系统框架主要应用于ARM平台，但不局限于ARM平台，通过编译器控制在X86、MAC等架构的机器上也可以运行。</p>
 <p><img src="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/android-stack_2x-16456382834502.png" alt="Android 软件堆栈"></p>
+<span id="more"></span>
+
 <h2 id="Linux-内核层"><a href="#Linux-内核层" class="headerlink" title="Linux 内核层"></a>Linux 内核层</h2><p>安卓平台的基础是2.6版本的Linux内核，内核层主要提供一些底层功能，例如安全、内存管理、进程管理、网络堆栈、驱动模型，谷歌允许设备制造商为Linux内核开发硬件驱动程序。</p>
 <p>Google在Android架构里提出了Hal的概念，这个HAL其实就是独立的意思，Android系统不仅依赖于某一个具体的硬件驱动，而是依赖于Hal代码，这样，第三方厂商可以將自己不开源的代码封装在HAL层，仅仅提供二进制代码。从而避免了GPL协议的污染。</p>
 <h2 id="HAL层"><a href="#HAL层" class="headerlink" title="HAL层"></a>HAL层</h2><p>硬件抽象层（Hardware Abstraction Layer, HAL)，简称为HAL层。 HAL层通过更高级别的Java语言API框架显示设备硬件功能。包含扩个库模块，其中每个模块都为特定类型的硬件组成实现一个界面。例如相机或者蓝牙模块。 当框架API 要求访问硬件时，安卓系统将会加载对应的库模块。HAL层处于系统运行库层，链接Linux层底层硬件驱动和Framework层。</p>

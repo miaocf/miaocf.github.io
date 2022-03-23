@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="简介艾姆克教程第七章。主要学习GPIO输出驱动有源蜂鸣器。 蜂鸣器分类 有源蜂鸣器： 有源蜂鸣器内部带震荡源，只要一通电就会响。 无源蜂鸣器： 内部不带震荡源，所以用直流信号无法令其鸣响，必须用频率信号去驱动它。  电路原理开发板上使用的是3V有源蜂鸣器，其原理图如下：    开发板上我们用一个NPN三极管 9013来实现开关功能，对应的链接52840 的 P1.07 管脚， 当输出低电平时，三极">
+  <meta name="description" content="简介艾姆克教程第七章。主要学习GPIO输出驱动有源蜂鸣器。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nRF52840开发（三）">
 <meta property="og:url" content="http://example.com/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
 <meta property="og:site_name" content="1943丶 Blog">
-<meta property="og:description" content="简介艾姆克教程第七章。主要学习GPIO输出驱动有源蜂鸣器。 蜂鸣器分类 有源蜂鸣器： 有源蜂鸣器内部带震荡源，只要一通电就会响。 无源蜂鸣器： 内部不带震荡源，所以用直流信号无法令其鸣响，必须用频率信号去驱动它。  电路原理开发板上使用的是3V有源蜂鸣器，其原理图如下：    开发板上我们用一个NPN三极管 9013来实现开关功能，对应的链接52840 的 P1.07 管脚， 当输出低电平时，三极">
+<meta property="og:description" content="简介艾姆克教程第七章。主要学习GPIO输出驱动有源蜂鸣器。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020307131.png">
 <meta property="og:image" content="http://example.com/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020246498.png">
 <meta property="og:image" content="http://example.com/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020740402.png">
 <meta property="article:published_time" content="2022-03-22T18:16:45.000Z">
-<meta property="article:modified_time" content="2022-03-22T18:16:45.537Z">
+<meta property="article:modified_time" content="2022-03-23T18:45:55.913Z">
 <meta property="article:author" content="Miaocf">
 <meta property="article:tag" content="BLE">
 <meta name="twitter:card" content="summary">
@@ -195,6 +195,13 @@
 
               <time title="创建时间：2022-03-23 02:16:45" itemprop="dateCreated datePublished" datetime="2022-03-23T02:16:45+08:00">2022-03-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-24 02:45:55" itemprop="dateModified" datetime="2022-03-24T02:45:55+08:00">2022-03-24</time>
+              </span>
 
           
 
@@ -208,6 +215,8 @@
 
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>艾姆克教程第七章。主要学习GPIO输出驱动有源蜂鸣器。</p>
+<span id="more"></span>
+
 <h2 id="蜂鸣器分类"><a href="#蜂鸣器分类" class="headerlink" title="蜂鸣器分类"></a>蜂鸣器分类</h2><ul>
 <li>有源蜂鸣器： 有源蜂鸣器内部带震荡源，只要一通电就会响。</li>
 <li>无源蜂鸣器： 内部不带震荡源，所以用直流信号无法令其鸣响，必须用频率信号去驱动它。</li>

@@ -185,8 +185,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-03-24 01:11:23" itemprop="dateCreated datePublished" datetime="2022-03-24T01:11:23+08:00">2022-03-24</time>
+              <time title="创建时间：2022-03-24 01:11:23 / 修改时间：02:44:46" itemprop="dateCreated datePublished" datetime="2022-03-24T01:11:23+08:00">2022-03-24</time>
             </span>
 
           
@@ -201,31 +202,14 @@
 
       
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>学习nRF52850 MCU 的寄存器类型以及区别，了解MCU和外设之间的资源共享机制。掌握哪些外设可以同时使用，哪些外设只能同时使用一个。</p>
-<h2 id="寄存器类型"><a href="#寄存器类型" class="headerlink" title="寄存器类型"></a>寄存器类型</h2><p>nRF52840的寄存器可以分为以下四种类型：</p>
-<ul>
-<li><p>任务寄存器 Task： 可以有程序或者时间出发，用于启动某一个任务，比如用 UART 发送数据时。</p>
-<blockquote>
-<p>具体使用时，直接向任务寄存器的地址写 “1” 即可触发对应的任务。 </p>
-<p>eg: UART 的 STARTTX 任务，对应的任务寄存器地址为 0x400020000， 所以应用程序只需要向这个地址写 “1” 即可触发 UART 的 STARTTX  任务。</p>
-</blockquote>
-</li>
-<li><p>事件寄存器 Event:  外设产生事件时，外设通过对对应的事件寄存器和中断向 CPU 提供指示。</p>
-</li>
-<li><p>快捷方式寄存器： 快捷方式寄存器用于提供一些快捷的操作而不用去配置多个寄存器。</p>
-<blockquote>
-<p>nRF52840 中连接同一个外设的事件和任务，当任务发生时， 自动触发任务而不需要 CPU 参与。</p>
-</blockquote>
-</li>
-<li><p>通用寄存器： 和一般单片机的寄存器一样。</p>
-</li>
-</ul>
-<p>任务和事件的一个很重要的用处是和 PPI （外设交叉互联）配合使用，通过配置 PPI， 将某个事件和任务连接起来，连接后，当事件产生时会在硬件上自动触发任务而不需要 CPU 参与。这种机制可以有效的减少 CPU 的占用时间，降低 CPU 的负荷。 同时也节省了中断资源，提高事件的响应速度。</p>
-<h2 id="外设资源共享"><a href="#外设资源共享" class="headerlink" title="外设资源共享"></a>外设资源共享</h2><p>nRF52840 的每一个外设都分配了固定大小位 0x1000 字节的地址空间，每个外设都有一个ID， ID和外设的对应关系是： 从起始地址为 0x400000000 的外设开始编号，即起始地址为 0x400000000 的外设ID为0， 起始地址为 0x40001000 的外设 ID 是1， 以此类推。</p>
-<p>具有相同 ID 的外设共享寄存器等资源，所以具有相同 ID 的外设同时只能使用一个 。</p>
-<p><img src="/2022/03/24/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E5%9B%9B%EF%BC%89/image-20220324010056327.png" alt="image-20220324010056327"></p>
-<p><img src="/2022/03/24/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E5%9B%9B%EF%BC%89/image-20220324010120085.png" alt="image-20220324010120085"></p>
-<p><img src="/2022/03/24/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E5%9B%9B%EF%BC%89/image-20220324010552961.png" alt="image-20220324010552961"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/24/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E5%9B%9B%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -270,6 +254,13 @@
 
               <time title="创建时间：2022-03-23 02:16:45" itemprop="dateCreated datePublished" datetime="2022-03-23T02:16:45+08:00">2022-03-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-24 02:45:55" itemprop="dateModified" datetime="2022-03-24T02:45:55+08:00">2022-03-24</time>
+              </span>
 
           
 
@@ -283,19 +274,14 @@
 
       
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>艾姆克教程第七章。主要学习GPIO输出驱动有源蜂鸣器。</p>
-<h2 id="蜂鸣器分类"><a href="#蜂鸣器分类" class="headerlink" title="蜂鸣器分类"></a>蜂鸣器分类</h2><ul>
-<li>有源蜂鸣器： 有源蜂鸣器内部带震荡源，只要一通电就会响。</li>
-<li>无源蜂鸣器： 内部不带震荡源，所以用直流信号无法令其鸣响，必须用频率信号去驱动它。</li>
-</ul>
-<h2 id="电路原理"><a href="#电路原理" class="headerlink" title="电路原理"></a>电路原理</h2><p>开发板上使用的是3V有源蜂鸣器，其原理图如下：</p>
-<p><img src="/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020307131.png" alt="image-20220323020307131"></p>
-<p>  开发板上我们用一个NPN三极管 9013来实现开关功能，对应的链接52840 的 P1.07 管脚， 当输出低电平时，三极管处于截止状态，蜂鸣器和地之间断开，不鸣响； 当输出高电平时，导通地和蜂鸣器，发出鸣响。其中 R6 为保证三极管可靠截止的电阻。</p>
-<p><img src="/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020246498.png" alt="image-20220323020246498"></p>
-<h2 id="硬件链接"><a href="#硬件链接" class="headerlink" title="硬件链接"></a>硬件链接</h2><p>导通开发板上P1.07 和 BUZZ 之间的管脚。</p>
-<p><img src="/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/image-20220323020740402.png" alt="image-20220323020740402"></p>
-<h2 id="主程序"><a href="#主程序" class="headerlink" title="主程序"></a>主程序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span>   </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;nrf_delay.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;boards.h&quot;</span></span></span><br><span class="line"><span class="comment">//Log需要引用的头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;nrf_log.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;nrf_log_ctrl.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;nrf_log_default_backends.h&quot;</span></span></span><br><span class="line"><span class="comment">/* 试验需要用到IK-52840DK开发板中的蜂鸣器,占用的nRF52840引脚资源如下</span></span><br><span class="line"><span class="comment">P1.07：输出：驱动蜂鸣器</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">需要用跳线帽短接P1.07</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义驱动蜂鸣器的引脚P1.07</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  BEEP_PIN   NRF_GPIO_PIN_MAP(1,7)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//日志打印模块初始化</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">log_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//初始化log程序模块</span></span><br><span class="line">	  <span class="keyword">ret_code_t</span> err_code = NRF_LOG_INIT(<span class="literal">NULL</span>);</span><br><span class="line">    APP_ERROR_CHECK(err_code);</span><br><span class="line">    <span class="comment">//设置log输出终端（根据sdk_config.h中的配置设置输出终端为UART或者RTT）</span></span><br><span class="line">    NRF_LOG_DEFAULT_BACKENDS_INIT();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/***************************************************************************</span></span><br><span class="line"><span class="comment">* 描  述 : 设置GPIO高电平时的输出电压为3.3V </span></span><br><span class="line"><span class="comment">* 入  参 : 无 </span></span><br><span class="line"><span class="comment">* 返回值 : 无</span></span><br><span class="line"><span class="comment">**************************************************************************/</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gpio_output_voltage_setup_3v3</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//读取UICR_REGOUT0寄存器，判断当前GPIO输出电压设置的是不是3.3V，如果不是，设置成3.3V</span></span><br><span class="line">    <span class="keyword">if</span> ((NRF_UICR-&gt;REGOUT0 &amp; UICR_REGOUT0_VOUT_Msk) !=</span><br><span class="line">        (UICR_REGOUT0_VOUT_3V3 &lt;&lt; UICR_REGOUT0_VOUT_Pos))</span><br><span class="line">    &#123;</span><br><span class="line">        NRF_NVMC-&gt;CONFIG = NVMC_CONFIG_WEN_Wen;</span><br><span class="line">        <span class="keyword">while</span> (NRF_NVMC-&gt;READY == NVMC_READY_READY_Busy)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        NRF_UICR-&gt;REGOUT0 = (NRF_UICR-&gt;REGOUT0 &amp; ~((<span class="keyword">uint32_t</span>)UICR_REGOUT0_VOUT_Msk)) |</span><br><span class="line">                            (UICR_REGOUT0_VOUT_3V3 &lt;&lt; UICR_REGOUT0_VOUT_Pos);</span><br><span class="line"></span><br><span class="line">        NRF_NVMC-&gt;CONFIG = NVMC_CONFIG_WEN_Ren;</span><br><span class="line">        <span class="keyword">while</span> (NRF_NVMC-&gt;READY == NVMC_READY_READY_Busy)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//复位更新UICR寄存器</span></span><br><span class="line">        NVIC_SystemReset();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//配置UICR_REGOUT0寄存器，设置GPIO输出3.3V电压</span></span><br><span class="line">	gpio_output_voltage_setup_3v3();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//初始化log程序模块，因为本例中没有加入UART相关的文件，因此只能用RTT打印</span></span><br><span class="line">	log_init();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//配置用于驱动蜂鸣器的引脚，即配置P1.07为输出</span></span><br><span class="line">	nrf_gpio_cfg_output(BEEP_PIN);</span><br><span class="line">	<span class="comment">//P1.07输出低电平，即蜂鸣器停止鸣响</span></span><br><span class="line">	nrf_gpio_pin_clear(BEEP_PIN); </span><br><span class="line">	</span><br><span class="line">  	<span class="comment">//LOG打印启动信息</span></span><br><span class="line">  	NRF_LOG_INFO(<span class="string">&quot;beep example started&quot;</span>);	</span><br><span class="line">	NRF_LOG_FLUSH();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)  </span><br><span class="line">	&#123;  </span><br><span class="line">	  <span class="comment">//翻转P1.07状态</span></span><br><span class="line">	  nrf_gpio_pin_toggle(BEEP_PIN);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//软件延时500ms</span></span><br><span class="line">	  nrf_delay_ms(<span class="number">500</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/23/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -431,10 +417,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-02-24 00:32:47 / 修改时间：02:12:32" itemprop="dateCreated datePublished" datetime="2022-02-24T00:32:47+08:00">2022-02-24</time>
+              <time title="创建时间：2022-02-24 00:32:47" itemprop="dateCreated datePublished" datetime="2022-02-24T00:32:47+08:00">2022-02-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-24 02:48:07" itemprop="dateModified" datetime="2022-03-24T02:48:07+08:00">2022-03-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -458,105 +450,14 @@
       
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文主要对hexo的基本指令使用做一个记录。</p>
 <p>包括草稿创建、发表、网页部署、本地模拟、创建页面等。</p>
-<h2 id="发布新文章"><a href="#发布新文章" class="headerlink" title="发布新文章"></a>发布新文章</h2><p><strong>方法1： 直接发表文章</strong></p>
-<p>在hexo的根目录下，运行<code>bash</code>， 键入下述指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post: title</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224003757497.png" alt="image-20220224003757497"></p>
-<p>执行上述命令后，就会在目录 <code>Blog\source\_posts</code> 文件夹下新生成对应名字的 markdown 文档模板和一个同名的用于存放图片的文件夹。利用 Typora 的自定义偏好设置，可以很方便的在文章中直接插入图片的同时完成图片目录的部署。</p>
-<p><strong>方法2：先写草稿再发表</strong></p>
-<p>在 hexo 根目录下键入下述指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<p>执行指令后，就会在目录 <code>Blog\source\_drafts</code> 下新建一个 test.md 文件和一个同名的文件夹。在完成文档内容的编辑后，当准备发布草稿的时候，键入：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure>
-
-<p>该指令可以让我们在本地端口 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 试试预览草稿效果。</p>
-<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224010904556.png" alt="image-20220224010904556"></p>
-<p>当最终决定文档撰写完毕，最终发表时，键入指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<p>该指令将上述的草稿文件和对应的同名文件夹文件从<code>Blog\source\_drafts</code>路径移动到了<code>Blog\source\_posts</code>路径下，此时若执行网页渲染部署，则会体现在最终的效果中。</p>
-<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224011304589.png" alt="image-20220224011304589"></p>
-<h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p><code>Draft</code> 和 <code>Post</code> 统称为 <code>Blog pages</code>， 此外在 hexo 网页上还有一种页面 <code>normal pages</code>, 其路径统一也在<code>source</code>文件夹下，不过文件名没有以下划线开头。</p>
-<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224011726491.png" alt="image-20220224011726491"></p>
-<p>这些页面包括 “about” 、“tags”等。新建这种类型的页面可以通过下述指令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page Alg</span><br></pre></td></tr></table></figure>
-
-<p>运行指令后，会在source文件夹下创建名为 Alg 的文件夹，其中有一个 index.md 文件。此时通过 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 网页访问并不会出现在页面内，而是需要在网页后面添加 <code>Alg/</code> 通过 URL 进行访问，即网页：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://localhost:4000/Alg/">http://localhost:4000/Alg/</a></p>
-</blockquote>
-<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224012646309.png" alt="image-20220224012646309"></p>
-<p>综上，我们可以知道 hexo 的页面可以分为三种：</p>
-<p><img src="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20220224012438452.png" alt="image-20220224012438452"></p>
-<h2 id="网页发布"><a href="#网页发布" class="headerlink" title="网页发布"></a>网页发布</h2><ol>
-<li><p><code>hexo g</code></p>
-<p>Generator 指令， 该指令可以快速将 <code>hexo</code> 根目录下 <code>source</code> 资源文件夹中的图片、markdown 文档内容转换成 <code>index.html</code> 文件， 并结合当前设置的主体，渲染成最终的静态网页文件，存放于<code>public</code> 文件夹下。</p>
-<table>
-<thead>
-<tr>
-<th align="left">选项</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>-d</code>, <code>--deploy</code></td>
-<td align="left">文件生成后立即部署网站</td>
-</tr>
-<tr>
-<td align="left"><code>-w</code>, <code>--watch</code></td>
-<td align="left">监视文件变动</td>
-</tr>
-<tr>
-<td align="left"><code>-b</code>, <code>--bail</code></td>
-<td align="left">生成过程中如果发生任何未处理的异常则抛出异常</td>
-</tr>
-<tr>
-<td align="left"><code>-f</code>, <code>--force</code></td>
-<td align="left">强制重新生成文件 Hexo 引入了差分机制，如果 <code>public</code> 目录存在，那么 <code>hexo g</code> 只会重新生成改动的文件。 使用该参数的效果接近 <code>hexo clean &amp;&amp; hexo generate</code></td>
-</tr>
-<tr>
-<td align="left"><code>-c</code>, <code>--concurrency</code></td>
-<td align="left">最大同时生成文件的数量，默认无限制</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><code>hexo server</code></p>
-<p>该指令启动服务器，可以让我们在本地查看网页效果。默认端口为：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">选项</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>-p</code>, <code>--port</code></td>
-<td align="left">重设端口</td>
-</tr>
-<tr>
-<td align="left"><code>-s</code>, <code>--static</code></td>
-<td align="left">只使用静态文件</td>
-</tr>
-<tr>
-<td align="left"><code>-l</code>, <code>--log</code></td>
-<td align="left">启动日记记录，使用覆盖记录格式</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><code>hexo deploy</code></p>
-<p>部署网址指令，改指令将<code>public</code> 文件夹下的静态网页文件部署到 github 网站上，在本地即体现为将<code>publick</code> 文件夹的内容复制到了<code>.deploy_git</code> 文件夹下。</p>
-</li>
-</ol>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/265b2c653e6f">https://www.jianshu.com/p/265b2c653e6f</a></p>
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">https://hexo.io/zh-cn/docs/commands</a></p>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/24/Hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -606,7 +507,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 02:15:07" itemprop="dateModified" datetime="2022-02-24T02:15:07+08:00">2022-02-24</time>
+                <time title="修改时间：2022-03-24 02:46:06" itemprop="dateModified" datetime="2022-03-24T02:46:06+08:00">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -630,60 +531,14 @@
 
       
           <h2 id="nRF52840开发（一）"><a href="#nRF52840开发（一）" class="headerlink" title="nRF52840开发（一）"></a>nRF52840开发（一）</h2><p>在安装好运行环境后，开始了解新建和配置裸机工程。</p>
-<h2 id="SDK学习"><a href="#SDK学习" class="headerlink" title="SDK学习"></a>SDK学习</h2><p>Nordic工程SDK17的工程目录如下：</p>
-<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011143496.png" alt="image-20220223011143496"></p>
-<h3 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h3><p>包含了开发是需要用到的各种库。其目录如下：</p>
-<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011323701.png" alt="image-20220223011323701"></p>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>该目录下存放着是SDK中所有的例子源码没包括BLE从机、BLE主机、BLE主从一体、芯片外设等例子程序。每个例子下都包含了刴个开发环境下的许多个工程，使用时需要注意区别。</p>
-<p>这里我们以“蓝牙心率计”为例，打开<code>examples\ble_peripheral\ble_app_hrs</code>目录，该路径下有许多开发板对应的型号，其中我们使用的52840即对应着 “pca10056”文件夹。此外nRf52840对应的BLE协议是 S140。</p>
-<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223011853164.png" alt="image-20220223011853164"></p>
-<h3 id="Integration-和-Modules"><a href="#Integration-和-Modules" class="headerlink" title="Integration 和 Modules"></a>Integration 和 Modules</h3><p>Integration 中存放的是旧版本的芯片外设驱动程序，对应的 SDK 版本为15.0之前的版本； modules 中存放的是芯片新版本的外设驱动程序。在SDK15.0版本之后， Nordic 开始重新编写外设驱动程序，并命名为<code>nrfx</code>, 放置modules 目录下。</p>
-<h2 id="新建和配置工程"><a href="#新建和配置工程" class="headerlink" title="新建和配置工程"></a>新建和配置工程</h2><p>nRf52840可以用 MDK5 和 IAR 集成开发环境来开发程序。</p>
-<h3 id="MDK5和pack的关系"><a href="#MDK5和pack的关系" class="headerlink" title="MDK5和pack的关系"></a>MDK5和pack的关系</h3><p>MDK5 与之前版本的区别： 早期版本期间（Software Packs）与编译器（MDK core) 分离，所以需要自己来配置期间，方便灵活管理。</p>
-<p>参考工程目录：</p>
-<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223013108066.png" alt="image-20220223013108066"></p>
-<p>按需添加各个驱动文件和头文件后，复制<code>sdk_config.h</code>文件至<code>...\project\config</code> 目录， 文件原可以从官方的实例文件中找类似的项目，实际使用的时候进行适当的修改配置。 目录为<code>...\pca10056\s140\config</code></p>
-<h3 id="Target选项卡配置"><a href="#Target选项卡配置" class="headerlink" title="Target选项卡配置"></a>Target选项卡配置</h3><p>52840 芯片的片内 FLASH 是 1MB， 对应的16进制是  0x100000, 片内 RAM 是 256 KB， 对应的16进制是： 0x40000。 如下图所示：</p>
-<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223020622200.png" alt="image-20220223020622200"></p>
-<h3 id="C-x2F-C-选项卡"><a href="#C-x2F-C-选项卡" class="headerlink" title="C&#x2F;C++选项卡"></a>C&#x2F;C++选项卡</h3><p><code>One ELF Secion per Function</code>选项：</p>
-<p>该选项的机制是将每一个函数作为一个优化单元，而非整个文件作为参与优化的单元。实际作用体现在大工程中，对于库函数中冗余函数的剔除。</p>
-<p><code>C99 Mode</code>选项：</p>
-<p>该选项允许变量的声明放在可执行语句的后面，使用组件库的时候需要勾选这个选项。</p>
-<p><code>Misc Controls</code> 栏：</p>
-<p>输入<code>--reduce_paths</code>, 可以设置MDK 自动消除冗余路径。</p>
-<h3 id="Linker选项卡："><a href="#Linker选项卡：" class="headerlink" title="Linker选项卡："></a>Linker选项卡：</h3><p>该选项卡中主要配置的是忽略告警设置。 BLE 工程编译的时候会产生 6330 的警告，因此在<code>Misc control</code>栏中加入 <code>--diag_suppress 6330</code>， 忽略告警。</p>
-<h2 id="编译工程"><a href="#编译工程" class="headerlink" title="编译工程"></a>编译工程</h2><ul>
-<li><code>Translate</code>: 编译当前打开的活动文档</li>
-<li><code>Build</code>: 增量编译，编译工程中上次修改的文件及其他依赖于这些修改过文件的模块，同时重新链接生成可执行文件。如果工程之前没编译链接过，它会直接调用<code>Rebuild ALL</code>.</li>
-<li><code>Rebuild All</code>: 全部重新编译。</li>
-</ul>
-<h2 id="Map-查看"><a href="#Map-查看" class="headerlink" title="Map 查看"></a>Map 查看</h2><p>双击工程名，即可快速查看工程Map文件</p>
-<p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223025746216.png" alt="image-20220223025746216"></p>
-<h2 id="烧写报错"><a href="#烧写报错" class="headerlink" title="烧写报错"></a>烧写报错</h2><p><img src="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/image-20220223024542799.png" alt="image-20220223024542799"></p>
-<p>原因： </p>
-<ul>
-<li>芯片中已经下载了协议栈，协议栈对占用的Flash空间进行了保护，并且协议栈的地址从0开始，这时候下载地址从0开始的程序，就会出现这种现象。</li>
-<li>没有加载编程算法</li>
-</ul>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sunskyday/article/details/103618161">https://blog.csdn.net/sunskyday/article/details/103618161</a></p>
-</blockquote>
-<p>使用JLink方法解决的， 先擦除芯片</p>
-<ol>
-<li><p>执行“Target-Manual Programming-Erase Chip”,即可擦除芯片。该操作是全片擦除，即擦除片内所有Flash和掉电保持的寄存器。</p>
-</li>
-<li><p>烧写程序</p>
-</li>
-</ol>
-<ul>
-<li><p>打开编译的程序文件：File-Open data file，导航到待烧写的文件路径，打开文件。</p>
-</li>
-<li><p>按下 “F7”,烧写目标板子。</p>
-</li>
-<li><p>按下 “F9”,开始运行并烧写程序。</p>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/22/nRF52840%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -733,7 +588,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 02:02:44" itemprop="dateModified" datetime="2022-02-24T02:02:44+08:00">2022-02-24</time>
+                <time title="修改时间：2022-03-24 02:48:29" itemprop="dateModified" datetime="2022-03-24T02:48:29+08:00">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -758,242 +613,14 @@
       
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>批处理命令使用方便，基本在Windows环境下就可以使用。日常工作中涉及一些脚本或者Adb命令的组合使用时，可以用<code>bat</code>批处理文件进行编写，使用仿版。</p>
 <p>本文主要学习一下批处理命令的基础。</p>
-<h2 id="Echo指令"><a href="#Echo指令" class="headerlink" title="Echo指令"></a>Echo指令</h2><table>
-<thead>
-<tr>
-<th>指令</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>echo message</td>
-<td>输出指令信息 + 消息</td>
-</tr>
-<tr>
-<td>echo on</td>
-<td>默认选项，输出指令信息 + 消息</td>
-</tr>
-<tr>
-<td>echo off</td>
-<td>关闭回显，不显示指令和路径， 只显示输出结果</td>
-</tr>
-<tr>
-<td>@echo off</td>
-<td>单行不显示指令和路径，只显示输出结果</td>
-</tr>
-<tr>
-<td>echo.</td>
-<td>换行</td>
-</tr>
-<tr>
-<td>echo message &gt; a.txt</td>
-<td>将&#96;&#96;message<code>的内容写入文件</code>a.txt&#96;，若文件不存在则创建文件</td>
-</tr>
-<tr>
-<td>echo message &gt;&gt; a.txt</td>
-<td>将&#96;&#96;message<code>的内容以追加的形式写入文件</code>a.txt&#96;</td>
-</tr>
-</tbody></table>
-<h5 id="示例程序1"><a href="#示例程序1" class="headerlink" title="示例程序1"></a>示例程序1</h5><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">:: 默认显示指令 + 结果</span><br><span class="line"><span class="built_in">echo</span> &quot;HI, This is <span class="built_in">echo</span> on.&quot;</span><br><span class="line"><span class="built_in">echo</span> &quot;Hey&quot;</span><br><span class="line">:: 回车换行</span><br><span class="line">@<span class="built_in">echo</span>.</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> &quot;This is <span class="built_in">echo</span> off.&quot;</span><br><span class="line"><span class="built_in">echo</span> &quot;Hello&quot;</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"></span><br><span class="line">:: 该指令关闭回显</span><br><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> &quot;This is @<span class="built_in">echo</span> off&quot;</span><br><span class="line"><span class="built_in">echo</span> &quot;Hello world&quot;</span><br><span class="line"><span class="built_in">echo</span> &quot;HI&quot;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> miaochaofeng &gt; a.txt</span><br><span class="line"><span class="built_in">echo</span> are learning Batch command. &gt;&gt; a.txt </span><br></pre></td></tr></table></figure>
-
-<h5 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">F:\code\shell&gt;<span class="built_in">echo</span> <span class="string">&quot;HI, This is echo on.&quot;</span></span><br><span class="line"><span class="string">&quot;HI, This is echo on.&quot;</span></span><br><span class="line"></span><br><span class="line">F:\code\shell&gt;<span class="built_in">echo</span> <span class="string">&quot;Hey&quot;</span></span><br><span class="line"><span class="string">&quot;Hey&quot;</span></span><br><span class="line"></span><br><span class="line">F:\code\shell&gt;<span class="built_in">echo</span> off</span><br><span class="line"><span class="string">&quot;This is echo off.&quot;</span></span><br><span class="line"><span class="string">&quot;Hello&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;This is @echo off&quot;</span></span><br><span class="line"><span class="string">&quot;Hello world&quot;</span></span><br><span class="line"><span class="string">&quot;HI&quot;</span></span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-
-<p>在当前目录下生成一个 <code>a.txt</code>文件。内容为：</p>
-<blockquote>
-<p>miaochaofeng</p>
-<p>are learning Batch command.</p>
-</blockquote>
-<h2 id="Set指令"><a href="#Set指令" class="headerlink" title="Set指令"></a>Set指令</h2><p>Set指令主要用来是声明变量，使用变量的时候注意需要用两个 <kbd>%</kbd>将变量包围起来。可以定义的变量包括：</p>
-<ul>
-<li>字符串</li>
-<li>表达式变量</li>
-<li>用户输入字符串变量</li>
-<li>系统自带的动态变量</li>
-</ul>
-<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><h5 id="实例程序2："><a href="#实例程序2：" class="headerlink" title="实例程序2："></a>实例程序2：</h5><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> a=My name is miaochaofeng.</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%a%</span></span><br><span class="line">:: 显示第<span class="number">3</span>个字符后的<span class="number">4</span>个字符</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%a:~3,4%</span></span><br><span class="line">:: 显示最后<span class="number">5</span>个字符</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%a:~-5%</span></span><br><span class="line">:: 显示除了最后<span class="number">5</span>个字符外的其他字符</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%a:~0,-5%</span></span><br><span class="line">:: 用X替换变量a中的所有a字符</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%a:a=X%</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注： 这里定义变量的时候，不可以根据美观在<kbd>=</kbd>左右两边加上空格。</p>
-</blockquote>
-<h5 id="输出结果："><a href="#输出结果：" class="headerlink" title="输出结果："></a>输出结果：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">My name is miaochaofeng.</span><br><span class="line">name</span><br><span class="line">feng.</span><br><span class="line">My name is miaochao</span><br><span class="line">My nXme is miXochXofeng.</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="表达式变量"><a href="#表达式变量" class="headerlink" title="表达式变量"></a>表达式变量</h4><p>表达式变量（数值变量）区别于字符串变量，数值变量比字符串变量多一个<code>/</code>符号。二者在使用的时候同样都需要用<kbd>%</kbd>包围起来。</p>
-<ul>
-<li>字符串变量格式为<code>Set</code> + <code>Var</code> + <code>=value</code></li>
-<li>数值变量格式为 <code>Set</code> + <code>/</code>+<code>Var</code> + <code>=value</code></li>
-</ul>
-<p>批处理命令设置数值变量的格式为：</p>
-<ul>
-<li><p>数值表达式变量：<code>set</code> + <code>/a</code> + <code>var</code>+<code>=</code>+<code>Expression</code></p>
-</li>
-<li><p>用户输入字符串变量：<code>set</code> + <code>/p</code> + <code>var</code>+ <code>=</code>+<code> promptString</code></p>
-</li>
-</ul>
-<blockquote>
-<p>可以通过CMD运行指令： <code>help set</code> 查看帮助</p>
-</blockquote>
-<h5 id="示例程序3"><a href="#示例程序3" class="headerlink" title="示例程序3"></a>示例程序3</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> /a a=30/10</span><br><span class="line"><span class="built_in">set</span> /p b=Please Input value:</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"><span class="built_in">echo</span> %a%</span><br><span class="line"><span class="built_in">echo</span> %b%</span><br></pre></td></tr></table></figure>
-
-<h5 id="输出结果：-1"><a href="#输出结果：-1" class="headerlink" title="输出结果："></a>输出结果：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Please Input value:32767</span><br><span class="line"></span><br><span class="line">3</span><br><span class="line">32767</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-
-<h4 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h4><p>系统变量即操作系统已经预先定义的变量，不需要我们人为赋值。也包括自定义的环境变量。</p>
-<p>常用的系统变量有：<code>CD</code>，<code>DATE</code>,<code>TIME</code>,<code>ADB</code></p>
-<h5 id="示例程序4"><a href="#示例程序4" class="headerlink" title="示例程序4"></a>示例程序4</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> %CD%</span><br><span class="line"><span class="built_in">echo</span> %DATE%</span><br><span class="line"><span class="built_in">echo</span> %TIME%</span><br><span class="line"><span class="built_in">echo</span> %HOMEPATH%</span><br><span class="line"><span class="built_in">echo</span> %OS%</span><br><span class="line"><span class="built_in">echo</span> %PATHEXT%</span><br><span class="line"><span class="built_in">echo</span> %APPDATA%</span><br><span class="line"><span class="built_in">echo</span> %ADB%</span><br></pre></td></tr></table></figure>
-
-<h5 id="输出结果：-2"><a href="#输出结果：-2" class="headerlink" title="输出结果："></a>输出结果：</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">F:\code\shell</span><br><span class="line"><span class="number">2022</span>/<span class="number">02</span>/<span class="number">18</span> 周五</span><br><span class="line"> <span class="number">1</span>:<span class="number">09</span>:<span class="number">25.02</span></span><br><span class="line">\Users\Miao</span><br><span class="line">Windows_NT</span><br><span class="line">.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW</span><br><span class="line">C:\Users\Miao\AppData\Roaming</span><br><span class="line">C:\ADB  <span class="comment">// 自定义的环境变量</span></span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意如果只想在当前的<code>bat</code>批处理文件中使用的环境变量，可以使用：</p>
-<p>set CLASSPATH&#x3D;%SOMEPLACE%</p>
-</blockquote>
-<h5 id="实例程序5"><a href="#实例程序5" class="headerlink" title="实例程序5"></a>实例程序5</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> Add my define environment variable</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> myPath=F:\code</span><br><span class="line"><span class="built_in">set</span> folder=shell</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> a=%myPath%\%folder%</span><br><span class="line"><span class="built_in">echo</span> %a%</span><br></pre></td></tr></table></figure>
-
-<h5 id="程序输出："><a href="#程序输出：" class="headerlink" title="程序输出："></a>程序输出：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Add my define environment variable</span><br><span class="line">F:\code\shell</span><br></pre></td></tr></table></figure>
-
-<p>以上环境变量通常与下面的示例一起结合使用，达到路径拼接，环境变量新增的作用。</p>
-<p>下述程序包含了<code>Call</code>命令和<code>sub</code>子函数的调用</p>
-<h5 id="示例程序6"><a href="#示例程序6" class="headerlink" title="示例程序6"></a>示例程序6</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> 产生一个临时文件 &gt; tmp.txt</span><br><span class="line">Rem 下行先保存当前目录，再将c:\windows设为当前目录</span><br><span class="line"><span class="built_in">pushd</span> c:\windows</span><br><span class="line">Call :sub tmp.txt</span><br><span class="line">Rem 下行恢复前次的当前目录</span><br><span class="line">Popd</span><br><span class="line">Call :sub tmp.txt</span><br><span class="line">pause</span><br><span class="line">Del tmp.txt</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">:sub</span><br><span class="line"><span class="built_in">echo</span> 删除引号： %~1</span><br><span class="line"><span class="built_in">echo</span> 扩充到路径： %~f1</span><br><span class="line"><span class="built_in">echo</span> 扩充到一个驱动器号： %~d1</span><br><span class="line"><span class="built_in">echo</span> 扩充到一个路径： %~p1 </span><br><span class="line"><span class="built_in">echo</span> 扩充到一个文件名： %~n1</span><br><span class="line"><span class="built_in">echo</span> 扩充到一个文件扩展名： %~x1</span><br><span class="line"><span class="built_in">echo</span> 扩充的路径指含有短名： %~s1 </span><br><span class="line"><span class="built_in">echo</span> 扩充到文件属性： %~a1 </span><br><span class="line"><span class="built_in">echo</span> 扩充到文件的日期/时间： %~t1 </span><br><span class="line"><span class="built_in">echo</span> 扩充到文件的大小： %~z1 </span><br><span class="line"><span class="built_in">echo</span> 扩展到驱动器号和路径：%~dp1</span><br><span class="line"><span class="built_in">echo</span> 扩展到文件名和扩展名：%~nx1</span><br><span class="line"><span class="built_in">echo</span> 扩展到类似 DIR 的输出行：%~ftza1</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line">goto :eof</span><br></pre></td></tr></table></figure>
-
-<h5 id="程序输出"><a href="#程序输出" class="headerlink" title="程序输出"></a>程序输出</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">删除引号： tmp.txt 						<span class="comment">// %~1</span></span><br><span class="line">扩充到路径： c:\Windows\tmp.txt 		   <span class="comment">// %~f1 </span></span><br><span class="line">扩充到一个驱动器号： c:					<span class="comment">// %~d1</span></span><br><span class="line">扩充到一个路径： \Windows\				 <span class="comment">// %~p1</span></span><br><span class="line">扩充到一个文件名： tmp					<span class="comment">// %~n1</span></span><br><span class="line">扩充到一个文件扩展名： .txt			   <span class="comment">// %~x1</span></span><br><span class="line">扩充的路径指含有短名： c:\Windows\tmp.txt</span><br><span class="line">扩充到文件属性：</span><br><span class="line">扩充到文件的日期/时间：</span><br><span class="line">扩充到文件的大小：</span><br><span class="line">扩展到驱动器号和路径：c:\Windows\		   <span class="comment">// %~dp1</span></span><br><span class="line">扩展到文件名和扩展名：tmp.txt             <span class="comment">// %~nx1</span></span><br><span class="line">扩展到类似 DIR 的输出行：c:\Windows\tmp.txt</span><br><span class="line"></span><br><span class="line">删除引号： tmp.txt</span><br><span class="line">扩充到路径： F:\code\shell\tmp.txt</span><br><span class="line">扩充到一个驱动器号： F:</span><br><span class="line">扩充到一个路径： \code\shell\</span><br><span class="line">扩充到一个文件名： tmp</span><br><span class="line">扩充到一个文件扩展名： .txt</span><br><span class="line">扩充的路径指含有短名： F:\code\shell\tmp.txt</span><br><span class="line">扩充到文件属性： --a--------</span><br><span class="line">扩充到文件的日期/时间： <span class="number">2022</span>/<span class="number">02</span>/<span class="number">18</span> <span class="number">01</span>:<span class="number">29</span></span><br><span class="line">扩充到文件的大小： <span class="number">19</span></span><br><span class="line">扩展到驱动器号和路径：F:\code\shell\</span><br><span class="line">扩展到文件名和扩展名：tmp.txt</span><br><span class="line">扩展到类似 DIR 的输出行：--a-------- <span class="number">2022</span>/<span class="number">02</span>/<span class="number">18</span> <span class="number">01</span>:<span class="number">29</span> <span class="number">19</span> F:\code\shell\tmp.txt</span><br><span class="line"></span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h4 id="系统环境变量表"><a href="#系统环境变量表" class="headerlink" title="系统环境变量表"></a>系统环境变量表</h4><table>
-<thead>
-<tr>
-<th>变量</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>%ALLUSERSPROFILE%</td>
-<td>返回 “所有用户” 配置文件的位置</td>
-</tr>
-<tr>
-<td>%APPDATA%</td>
-<td>返回默认情况下应用程序存储数据的位置</td>
-</tr>
-<tr>
-<td>%CD%</td>
-<td>返回当前目录字符串。也就是获得当前路径，并将其转换为字符串</td>
-</tr>
-<tr>
-<td>%CMDCMDLINE%</td>
-<td>返回用来启动当前的 Cmd.exe 的准确命令行</td>
-</tr>
-<tr>
-<td>%CMDEXTVERSION%</td>
-<td>返回当前的 “命令处理程序扩展” 的版本号</td>
-</tr>
-<tr>
-<td>%COMPUTERNAME%</td>
-<td>返回计算机名称</td>
-</tr>
-<tr>
-<td>%COMSPEC%</td>
-<td>返回命令行解释器可执行程序的准确路径。也就是返回 cmd.exe 的路径，一般在 C:\WINDOWS\system32\cmd.exe</td>
-</tr>
-<tr>
-<td>%DATE%</td>
-<td>返回当前日期字符串。和使用 date&#x2F;t 效果一样</td>
-</tr>
-<tr>
-<td>%ERRORLEVEL%</td>
-<td>返回上一条命令的错误代码。通常用 0 表示正确，非0 表示错误</td>
-</tr>
-<tr>
-<td>%HOMEDRIVE%</td>
-<td>返回连接到用户主目录的本地工作站驱动器号。基于主目录值而设置。用户主目录是在 “本地用户和组” 中指定的</td>
-</tr>
-<tr>
-<td>%HOMEPATH%</td>
-<td>返回用户主目录的完整路径。基于主目录值而设置。用户主目录是在 “本地用户和组” 中指定的</td>
-</tr>
-<tr>
-<td>%HOMESHARE%</td>
-<td>返回用户的共享目录的网络路径。基于主目录值而设置。用户主目录是在 “本地用户和组” 中指定的</td>
-</tr>
-<tr>
-<td>%LOGONSERVER%</td>
-<td>返回验证当前登录会话的域控制器的名称</td>
-</tr>
-<tr>
-<td>%NUMBER_OF_PROCESSORS%</td>
-<td>指定安装在计算机上的处理器数目(所有 CPU 的总核心数)</td>
-</tr>
-<tr>
-<td>%OS%</td>
-<td>返回操作系统名称</td>
-</tr>
-<tr>
-<td>%PATH%</td>
-<td>指定可执行文件的搜索路径。也就是在这些目录下的可执行文件 （不仅仅是.exe，可以用 echo %PATHEXT% 查看哪些属于可执行文件。）可以直接在开始–&gt;运行里直接执行，当然也可以在命令提示符、批处理中直接执行。例如记事本文件位于 C:\WINDOWS\NOTEPAD.EXE ，那么我们点击 “开始–&gt;运行，输入 NOTEPAD “ 就可以打开记事本了。或者我们打开 CMD 窗口 ，直接输入 NOTEPAD 也可以打开记事本</td>
-</tr>
-<tr>
-<td>%PATHEXT%</td>
-<td>返回操作系统认为可执行的文件扩展名的列表</td>
-</tr>
-<tr>
-<td>%PROCESSOR_ARCHITECTURE%</td>
-<td>返回处理器的芯片体系结构。返回值为 x86 或 IA64 或 RISC。这些都是常见的架构 ，或者称作指令集。Windows 操作系统都是基于 x86 架构开发的，国产CPU 不是采用 x86 指令集 ，所以无法运行 Windows</td>
-</tr>
-<tr>
-<td>%PROCESSOR_IDENTFIER%</td>
-<td>返回处理器说明</td>
-</tr>
-<tr>
-<td>%PROCESSOR_LEVEL%</td>
-<td>返回计算机上安装的处理器型号</td>
-</tr>
-<tr>
-<td>%PROCESSOR_REVISION%</td>
-<td>返回处理器版本号</td>
-</tr>
-<tr>
-<td>%PROMPT%</td>
-<td>返回当前解释程序的命令提示符设置。由 Cmd.exe 生成</td>
-</tr>
-<tr>
-<td>%RANDOM%</td>
-<td>返回 0 到 32767 之间的任意十进制数字。由 Cmd.exe 生成</td>
-</tr>
-<tr>
-<td>%SYSTEMDRIVE%</td>
-<td>返回包含Windows server operation system根目录（即系统根目录）的驱动器</td>
-</tr>
-<tr>
-<td>%SYSTEMROOT%</td>
-<td>返回 Windows server operation system 根目录位置</td>
-</tr>
-<tr>
-<td>%TEMP% 和 %TMP%</td>
-<td>返回对当前登录用户可用的应用程序所使用的默认临时目录。有些应用程序需要 TEMP，而其他应用程序则需要 TMP</td>
-</tr>
-<tr>
-<td>%TIME%</td>
-<td>返回当前时间字符串。使用与 time &#x2F;t 命令相同的格式</td>
-</tr>
-<tr>
-<td>%USERDOMAIN%</td>
-<td>返回包含用户账户的域的名称</td>
-</tr>
-<tr>
-<td>%USERNAME%</td>
-<td>返回当前登录的用户的名称</td>
-</tr>
-<tr>
-<td>%USERPROFILE%</td>
-<td>返回当前用户的配置文件的位置</td>
-</tr>
-<tr>
-<td>%WINDIR%</td>
-<td>返回操作系统目录的位置</td>
-</tr>
-</tbody></table>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/18/Bat%E8%84%9A%E6%9C%AC%E5%9F%BA%E7%A1%80/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1043,7 +670,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 02:03:00" itemprop="dateModified" datetime="2022-02-24T02:03:00+08:00">2022-02-24</time>
+                <time title="修改时间：2022-03-24 02:49:50" itemprop="dateModified" datetime="2022-03-24T02:49:50+08:00">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1068,45 +695,14 @@
       
           <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>C语言中，数组元素访问可以使用指针或者下标两种方法。二者效率上在某些情况下有所不同。</p>
 <p>在阅读《C和指针》第八章第145页时，有所感悟。</p>
-<p>前置知识：</p>
-<ul>
-<li><p>数组名和指针的区别</p>
-<ol>
-<li><p>数组具有确定数量的元素，而指针只是一个标量值。</p>
-</li>
-<li><p>数组名是一个指针常量，而非指针变量。</p>
-</li>
-</ol>
-</li>
-<li><p>数组名和指针不能替换的场景：</p>
-<ol>
-<li>作为<code>sizieof</code>操作符时，数组返回元素个数，指针返回指定环境下的指针大小。（32位为4，64位为8）</li>
-<li>作为操作符 <code>&amp;</code> 的操作数时，取一个数组名的地址返回一个指向数组的指针。而不是一个指向某个指针常量的指针。</li>
-</ol>
-<blockquote>
-<p>考虑下例子：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span>* c;</span><br><span class="line"></span><br><span class="line">c = &amp; a[<span class="number">0</span>]; <span class="comment">// 合法， 等价于c = a;</span></span><br><span class="line">b = a;      <span class="comment">// 非法，数组不能这样复制</span></span><br><span class="line">a = c;      <span class="comment">// 非法，a 为指针常量，不能被修改</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>恒等式</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">array</span>[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span>* ap = <span class="built_in">array</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 则有恒等式：</span></span><br><span class="line"><span class="built_in">array</span>[<span class="number">2</span>] = * (<span class="built_in">array</span> +　<span class="number">2</span>);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>特别的有 <code>array[2] = * (array + 2) = 2[array]</code>,虽然根据恒等式可以得出二者相同，但是从可读性出发，尽量使用前者。</p>
-<p>对数组元素的访问可以使用指针表达式和下标表达式两种方法，在假设二者都是正确的前提下，<strong>下标绝不会比指针更有效率，但是指针有时候比下标表达式更有效率。</strong></p>
-<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2. 例子"></a>2. 例子</h2><p>我们来研究两个循环，他们做了同一件事情。</p>
-<p>例1：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">array</span>[<span class="number">10</span>], a;</span><br><span class="line"><span class="keyword">for</span> (a = <span class="number">0</span>; a &lt; <span class="number">10</span>; a++) &#123;</span><br><span class="line">	<span class="built_in">array</span>[a] = <span class="number">0</span>; <span class="comment">// 这里a需要乘上整形的长度4.即每一次都有一次乘法。	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上述例子中，我们使用了下标表达式，程序运行时，编译器在程序中插入指令，取得a的值，并把它与整形的长度（也就是4）相乘。而这个乘法需要耗费一定的时间和空间。</p>
-<p>作为对比，看例2：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arrayp[<span class="number">10</span>], *ap;</span><br><span class="line"><span class="keyword">for</span> (ap = <span class="built_in">array</span>; ap &lt; <span class="built_in">array</span> + <span class="number">10</span>; ap++) &#123;</span><br><span class="line">	*ap = <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里虽然不存在下标，但是仍然存在乘法运算，这里的乘法出现在for循环中的++中。1与整型的长度4相乘，然后再加加。但是与上面下标表示法不同的是，这里相乘的两个数是两个相同的数，即1和4。最后，这个乘法只在编译的时候执行一次，现在程序包含了一条指令，把4和指针相加，程序在运行时并不执行乘法运算。</p>
-<blockquote>
-<p>总结：<strong>下标绝不会比指针更有效率，但是指针有时候比下标表达式更有效率。</strong></p>
-<p>但是同样重要的是，我们编写程序的时候不仅需要考虑程序运行的效率，同时也需要考虑可读性。<strong>不要为了效率上的细微差别而牺牲可读性。</strong></p>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/21/C_%E6%8C%87%E9%92%88%E5%92%8C%E4%B8%8B%E6%A0%87/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1156,7 +752,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 01:59:42" itemprop="dateModified" datetime="2022-02-24T01:59:42+08:00">2022-02-24</time>
+                <time title="修改时间：2022-03-24 02:48:52" itemprop="dateModified" datetime="2022-03-24T02:48:52+08:00">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1182,33 +778,14 @@
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>安卓系统整体采用了分层的架构，总共可以分为四层。从高层到低层分别是Android应用层，Android框架层，Android系统运行库层和Linux内核层。整个系统框架图如下图所示。</p>
 <p>Android系统框架主要应用于ARM平台，但不局限于ARM平台，通过编译器控制在X86、MAC等架构的机器上也可以运行。</p>
 <p><img src="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/android-stack_2x-16456382834502.png" alt="Android 软件堆栈"></p>
-<h2 id="Linux-内核层"><a href="#Linux-内核层" class="headerlink" title="Linux 内核层"></a>Linux 内核层</h2><p>安卓平台的基础是2.6版本的Linux内核，内核层主要提供一些底层功能，例如安全、内存管理、进程管理、网络堆栈、驱动模型，谷歌允许设备制造商为Linux内核开发硬件驱动程序。</p>
-<p>Google在Android架构里提出了Hal的概念，这个HAL其实就是独立的意思，Android系统不仅依赖于某一个具体的硬件驱动，而是依赖于Hal代码，这样，第三方厂商可以將自己不开源的代码封装在HAL层，仅仅提供二进制代码。从而避免了GPL协议的污染。</p>
-<h2 id="HAL层"><a href="#HAL层" class="headerlink" title="HAL层"></a>HAL层</h2><p>硬件抽象层（Hardware Abstraction Layer, HAL)，简称为HAL层。 HAL层通过更高级别的Java语言API框架显示设备硬件功能。包含扩个库模块，其中每个模块都为特定类型的硬件组成实现一个界面。例如相机或者蓝牙模块。 当框架API 要求访问硬件时，安卓系统将会加载对应的库模块。HAL层处于系统运行库层，链接Linux层底层硬件驱动和Framework层。</p>
-<p>而Android采用了Apache Licence2.0协议发布，Apache Licence2.0协议并未要求使用基于Apache Licence2.0协议的源代码的软件也必须开源。由于HAL属于Android的一部分，自然也不必开源了。当然加入HAL还有其他目的：统一硬件的调用接口；针对一些特殊的要求。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ww3344/p/5616983.html">https://www.cnblogs.com/ww3344/p/5616983.html</a></p>
-</blockquote>
-<p>HAL 是为了链接<strong>driver与FRAMEWORK层</strong>的很好的东西,方便与app层开发人员,你无须知道driver层的信息,就可以做相关开发。</p>
-<p>driver要有，但是有一部分涉及核心技术的使用hal来保护自己的核心技术不被泄露。换句话就是kernel中的driver调用hal中实现的方法来驱动，这样hal中的源码就不会被暴露出来，只暴露一个接口给kernel调用。kernel中虽然存在着driver，但是具体的实现方法没有，需要调用hal中的方法来具体实现。</p>
-<p>HAL层是为了硬件厂商规避GPL协议而存在的 所以不是必要的条件没有也可以执行 </p>
-<p>然后这个HAL层是为了实现硬件的描述 进行了抽象 ， 对上层提供接口 ，与linux kernel驱动进行通信 数据的读写 。有关硬件实现的细节，本来我们是要在linuxkernel层的驱动实现的 ，这样我们就可以通过HAL层来把硬件实现，既规避了GPL 又能提供接口 。</p>
-<p><img src="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/format,f_auto.jpeg" alt="img"></p>
-<p><img src="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/20140921165631589.png" alt="img"></p>
-<h2 id="运行时库层"><a href="#运行时库层" class="headerlink" title="运行时库层"></a>运行时库层</h2><p><strong>Android Runtime</strong></p>
-<p>Android 5.0 以上版本的系统，每个应用都在自己的进程中运行，并且有自己的Android Runtime (ART)实例。 ART通过执行DEX格式的文件在低内存设备上运行多个虚拟机。</p>
-<p><strong>原生C、C++ 库</strong></p>
-<p>许多核心Android 系统组件和服务的构建依赖C 、 C++ 编写的原生库。 Android通过提供Java框架API 以向应用显示其中部分原生库的功能。</p>
-<h2 id="Framework层"><a href="#Framework层" class="headerlink" title="Framework层"></a>Framework层</h2><p>Framework层主要是由 Java 语言进行编写的API层，同时也是开发者开发过程中大部分涉及到的层。通过 API 接口，开发者可以方便的调用Android系统的整个功能集。Framework层可以简化核心模块系统组件和服务的重复使用。</p>
-<p>Framework层包括活动管理器、窗口管理器、内容提供者、视图系统、包管理器、电话管理器、资源管理器、位置管理器、通知管理器和XMPP服务十个部分。</p>
-<h2 id="Applications层"><a href="#Applications层" class="headerlink" title="Applications层"></a>Applications层</h2><p> Application 层即日常用户最经常接触到的一层架构。用户手机上的一App应用以及Android OS自带的一些原生应用都是存在于应用层。典型的应用有联系人、邮件、日历、地图和短信等。开发者通过编写Java &#x2F; Kotlin语言的应用程序， 与原生系统程序和平共处。</p>
-<blockquote>
-<p>Ref：</p>
-<ol>
-<li>[Android官网]</li>
-</ol>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/24/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1258,7 +835,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 02:03:43" itemprop="dateModified" datetime="2022-02-24T02:03:43+08:00">2022-02-24</time>
+                <time title="修改时间：2022-03-24 02:50:15" itemprop="dateModified" datetime="2022-03-24T02:50:15+08:00">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1311,91 +888,15 @@
 </tr>
 </tbody></table>
 <p>详细的emoji集合和编码可以参考：[Full Emoji List, v14.0][<a target="_blank" rel="noopener" href="http://www.unicode.org/emoji/charts/full-emoji-list.html]">http://www.unicode.org/emoji/charts/full-emoji-list.html]</a></p>
-<p>该方法的缺点是需要记住对应的Unicode编码，不实用。</p>
-</li>
-<li><p>方法二： 使用英文单词</p>
-<p>格式：<code>:</code>+<code>对应英文单词</code>+<code>:</code></p>
-<table>
-<thead>
-<tr>
-<th>emoj</th>
-<th align="left">Markdown格式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>:smile:</td>
-<td align="left"><code>:smile:</code></td>
-</tr>
-<tr>
-<td>:bulb:</td>
-<td align="left"><code>:bulb:</code></td>
-</tr>
-<tr>
-<td>:mag:</td>
-<td align="left"><code>:mag:</code></td>
-</tr>
-<tr>
-<td>:star:</td>
-<td align="left"><code>:star:</code></td>
-</tr>
-</tbody></table>
-<p>该方法通过两个冒号和具体的英文单词拼接而成，使用方便。比较实用。</p>
-</li>
-</ul>
-<blockquote>
-<p>以下是一些常用的emoji图标：</p>
-<p>❤️ ✨⭐ ❗❓❕❔ ✊✌️ ✋✋ ☝️</p>
-<p>☀️ ☔ ☁️ ❄️ ⛄ ⚡ ⛅</p>
-<p>☎️ ☎️ ⌛ ⏳ ⏰ ⌚ ➿ ✉️ ✉️ ✂️ ✒️ ✏️ ⚽ ⚾️ ⛳ ♠️ ♥️ ♣️ ♦️ ☕</p>
-<p>⛪ ⛺ ⛲ ⛵ ⛵ ⚓ ✈️ ⛽ ⚠️ ♨️</p>
-<p>1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 0️⃣ #️⃣ ◀️ ⬇️ ▶️ ⬅️ ↙️ ↘️ ➡️ ⬆️ ↖️ ↗️ ⏬ ⏫ ⤵️ ⤴️ ↩️ ↪️ ↔️ ↕️ ⏪ ⏩ ℹ️ ️ ️ ️ ♿ ㊙️ ㊗️ Ⓜ️ ⛔ ✳️ ❇️ ✴️ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ⛎ ❎ ️ ️ ️ ♻️ ©️ ®️ ™️ ❌ ❗ ‼️ ⁉️ ⭕ ✖️ ➕ ➖ ➗ ✔️ ☑️ ➰ 〰️ 〽️ ▪️ ▫️ ◾ ◽ ◼️ ◻️ ⬛ ⬜ ✅ ⚫ ⚪</p>
-</blockquote>
-<h2 id="二-实体键盘按键"><a href="#二-实体键盘按键" class="headerlink" title="二. 实体键盘按键"></a>二. 实体键盘按键</h2><p>格式： 使用<code>&lt;kbd&gt;</code>+<code>按键名</code>+<code>&lt;/kbd&gt;</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;kbd&gt;Ctrl&lt;/kbd&gt;</span><br><span class="line">&lt;kbd&gt;Tab&lt;/kbd&gt;</span><br><span class="line">&lt;kbd&gt;Anything&lt;/kbd&gt;</span><br></pre></td></tr></table></figure>
-
-<p>代码效果：<kbd>Ctrl</kbd>    <kbd>Tab</kbd>    <kbd>Anything</kbd>    </p>
-<h2 id="三-特殊格式"><a href="#三-特殊格式" class="headerlink" title="三. 特殊格式"></a>三. 特殊格式</h2><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>格式</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>删除线</td>
-<td><code>~~anthing~~</code></td>
-<td><del>anthing</del></td>
-</tr>
-<tr>
-<td>加粗</td>
-<td><code>**hello world**</code> &#x2F; <kbd>Ctrl</kbd>+<kbd>T</kbd></td>
-<td><strong>hello world</strong></td>
-</tr>
-<tr>
-<td>斜体</td>
-<td><code>*hello world*</code>     &#x2F; <kbd>Ctrl</kbd>+<kbd>B</kbd></td>
-<td><em>hello world</em></td>
-</tr>
-<tr>
-<td>斜体加粗</td>
-<td><code>***hello world***</code></td>
-<td><em><strong>hello world</strong></em></td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>引用文本：<kbd>></kbd> + <kbd>space</kbd></p>
-<p>效果：</p>
-<blockquote>
-<p>Hello world!</p>
-</blockquote>
-</li>
-<li><p>分割线： <kbd>***</kbd>+<kbd>space</kbd>  &#x2F; <kbd>---</kbd> + <kbd>space</kbd></p>
-<p>效果：</p>
-<hr>
-</li>
-</ul>
-
+<p>该方法的缺点是需要记住对应的Unicode编码，不实用。</p></li></ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/23/Markdown%E6%8A%80%E5%B7%A7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1445,7 +946,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 02:04:53" itemprop="dateModified" datetime="2022-02-24T02:04:53+08:00">2022-02-24</time>
+                <time title="修改时间：2022-03-24 02:51:10" itemprop="dateModified" datetime="2022-03-24T02:51:10+08:00">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1469,251 +970,14 @@
 
       
           <h2 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h2><p><strong>正则表达式</strong>（regular expression)是一种字符串的匹配模式，可以用来检测一个字符串是否含有按照<strong>某种句法</strong>规则的字符串子串。在许多文本编辑器中，正则表达式常常被用来检索和替换某个模式的文本内容。通常被缩写为**”regex”**。</p>
-<h2 id="二、-表达式"><a href="#二、-表达式" class="headerlink" title="二、 表达式"></a>二、 表达式</h2><h3 id="1-通配符"><a href="#1-通配符" class="headerlink" title="1. 通配符"></a>1. 通配符</h3><ul>
-<li><p>常用的通配符有“ * ”、“ ？”</p>
-<p>其中“ * ”表示匹配0个或者任意多个字符；” ? “表示匹配0个或者1个字符。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[0-9]+abc$</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>^ b表示匹配输入字符串的开始位置。</li>
-<li>[0-9]+ 匹配多个数字， [0-9] 匹配单个数字，+匹配一个或者多个。</li>
-<li>abc$ 匹配字母abc并以abc为结尾， $ 为匹配输入字符串的结束位置。</li>
-</ul>
-</li>
-<li><p>例注册表注册只允许以字母数字下划线和连接符(-)， 就可以通过以下正则表达式来表示。</p>
-</li>
-</ul>
-<p><img src="/2021/07/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/regexp-cn.png" alt="img"></p>
-<h2 id="二、字符"><a href="#二、字符" class="headerlink" title="二、字符"></a>二、字符</h2><table>
-<thead>
-<tr>
-<th>语法</th>
-<th align="left">说明</th>
-<th>表达式实例</th>
-<th>完整匹配的字符串</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>一般字符</td>
-<td align="left">匹配自身</td>
-<td>abc</td>
-<td>abc</td>
-</tr>
-<tr>
-<td>.</td>
-<td align="left">匹配除了换行符“\n”以外的字符</td>
-<td>a.c</td>
-<td>abc</td>
-</tr>
-<tr>
-<td>\</td>
-<td align="left">转义字符，如果字符中有*符号需要匹配，可以使用 \* 或者字符集[*]</td>
-<td>a\.c<br>a\\c</td>
-<td>a.c<br>a\c</td>
-</tr>
-<tr>
-<td>[…]</td>
-<td align="left">字符集（字符类）。对应的位置可以说字符集中的任意字符(<strong>1个</strong>）。可以逐个列出也可以给出范围。第一个字符如果为^则表示取反。<br>所有的特殊字符在数字集中都失去原有的特殊含义。在字符集中如果要使用]、-或^，可以在前面加上反斜杠，或者把]、-放在第一个字符，把^放在非第一个字符。</td>
-<td>a[bcd]e<br>a[b-d]e</td>
-<td>abe|<br>ace|<br>ade</td>
-</tr>
-</tbody></table>
-<p>注意： 字符集中的数量仅匹配一次。</p>
-<h2 id="三、预定义字符集"><a href="#三、预定义字符集" class="headerlink" title="三、预定义字符集"></a>三、预定义字符集</h2><p>预定义字符集可以用于普通的匹配，也可以写在字符集[…]中的符号。</p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-<th>表达式实例</th>
-<th>完整匹配的字符串</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>\d</td>
-<td>数字：[0-9]</td>
-<td>a\dc</td>
-<td>a1c,  a2c</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>非数字：[ ^\d]</td>
-<td>a\Dc</td>
-<td>abc</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>空白字符：[&lt;空格&gt;\t\r\n\f\v]</td>
-<td>a\sc</td>
-<td>a c</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>非空白字符[ ^\s]</td>
-<td>a\Sc</td>
-<td>abc</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>单词字符: [A-Za-z0-9_]</td>
-<td>a\wc</td>
-<td>abc</td>
-</tr>
-<tr>
-<td>\W</td>
-<td>非单词字符: [ ^\w]</td>
-<td>a\Wc</td>
-<td>a c</td>
-</tr>
-</tbody></table>
-<p>注： d: digital ,   s: space    w: word</p>
-<h2 id="四、数量词"><a href="#四、数量词" class="headerlink" title="四、数量词"></a>四、数量词</h2><table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-<th>表达式实例</th>
-<th>完整匹配的字符串</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>匹配前一个字符0次或者无限次</td>
-<td>abc*</td>
-<td>ab<br>abccc</td>
-</tr>
-<tr>
-<td>+</td>
-<td>匹配前一个字符1次或者无限次</td>
-<td>abc+</td>
-<td>abc<br>abcccc</td>
-</tr>
-<tr>
-<td>?</td>
-<td>匹配前一个字符0次或者1次</td>
-<td>abc?</td>
-<td>ab<br>abc</td>
-</tr>
-<tr>
-<td>{m}</td>
-<td>匹配前一个字符m次</td>
-<td>ab{2}c</td>
-<td>abbc</td>
-</tr>
-<tr>
-<td>{m,n}</td>
-<td>匹配前一个字符m至n次<br>m和n可以省略，若省略m，则匹配0-n次； 若省略n则匹配m至无限次。</td>
-<td>ab{1,2}c</td>
-<td>abc<br>abbc</td>
-</tr>
-<tr>
-<td>*?+???<br>{m,n}?</td>
-<td>使* + ? {m, n} 变成非贪婪模式。</td>
-<td>无</td>
-<td>无</td>
-</tr>
-</tbody></table>
-<h2 id="五、边界匹配"><a href="#五、边界匹配" class="headerlink" title="五、边界匹配"></a>五、边界匹配</h2><table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-<th>表达式实例</th>
-<th>完整匹配的字符串</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>^</td>
-<td>匹配字符串的开头<br>在多行模式中匹配每一行的开头</td>
-<td>^abc</td>
-<td>abcxx</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串的结尾<br>在多行模式中匹配每一行的结尾</td>
-<td>abc$</td>
-<td>xxabc</td>
-</tr>
-<tr>
-<td>\A</td>
-<td>仅匹配字符串的开头</td>
-<td>\Aabc</td>
-<td>abc</td>
-</tr>
-<tr>
-<td>\Z</td>
-<td>仅匹配字符串的结尾</td>
-<td>abc\Z</td>
-<td>abc</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>仅匹配\w和\W之间</td>
-<td>a\b!bc</td>
-<td>a!bc</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>[ ^\b]</td>
-<td>a\Bbc</td>
-<td>abc</td>
-</tr>
-</tbody></table>
-<p>注：\b没有很明白。</p>
-<h2 id="六、逻辑分组"><a href="#六、逻辑分组" class="headerlink" title="六、逻辑分组"></a>六、逻辑分组</h2><table>
-<thead>
-<tr>
-<th>语法</th>
-<th>说明</th>
-<th>表达式实例</th>
-<th>完整匹配的字符串</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>|</td>
-<td>表示左右表达式的任意一个，或<br>左边的优先级高，若匹配成功则跳过右边的表达式<br>如果 |没有被包括在（）中， 则它的范围是整个正则表达</td>
-<td>abc|def</td>
-<td>abc<br>def</td>
-</tr>
-<tr>
-<td>(…)</td>
-<td>被括号起来的表达式将被作为分组，从表达式的左边开始每遇到一个分组的左括号’ ( ‘, 编号加1.<br>分组表达式作为一个整体，后面可以接数量词。表达式中的|仅在该组中有效</td>
-<td>(abc){2}<br>a(123|456)c</td>
-<td>abcabc|<br>a456c</td>
-</tr>
-<tr>
-<td>(?P&lt;name&gt;… )</td>
-<td>分组，除了原有的编号外在指定一个额外的别名</td>
-<td>（?P&lt;id&gt;abc){2}</td>
-<td>abcabc</td>
-</tr>
-<tr>
-<td>\&lt;number&gt;</td>
-<td>引用编号为&lt;number&gt;的分组匹配到字符串</td>
-<td>(\d)abc\1</td>
-<td>1abc1<br>5abc5</td>
-</tr>
-<tr>
-<td>(?P&#x3D;name)</td>
-<td>引用别名为&lt;name&gt;的分组匹配到字符串</td>
-<td>(?P&lt;id&gt;\d)abc(?P&#x3D;id)</td>
-<td>1abc1<br>5abc5</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="七、特殊构造"><a href="#七、特殊构造" class="headerlink" title="七、特殊构造"></a>七、特殊构造</h2><p><img src="/2021/07/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/image-20210723021530180.png" alt="image-20210723021530180"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
